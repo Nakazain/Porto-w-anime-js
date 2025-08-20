@@ -1,11 +1,10 @@
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { animate, stagger, text } from "animejs";
 
 function App() {
   useEffect(() => {
     const { chars } = text.split("h2", { words: false, chars: true });
     animate(chars, {
-      // Property keyframes
       y: [
         { to: "-2.75rem", ease: "outExpo", duration: 600 },
         { to: 0, ease: "outBounce", duration: 800, delay: 100 },
