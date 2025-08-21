@@ -9,7 +9,7 @@ function fadeInLeftC(
   waitUntil: number,
   selectors: string
 ) {
-  const { chars } = text.split(selectors, { chars: true });
+  const { chars } = text.split(`#${selectors}`, { chars: true });
 
   animate(chars, {
     x: [{ from: "2rem" }, { to: 0, duration: dur }],
@@ -25,7 +25,7 @@ function fadeInUpC(
   waitUntil: number,
   selectors: string
 ) {
-  const { chars } = text.split(selectors, { chars: true });
+  const { chars } = text.split(`#${selectors}`, { chars: true });
 
   animate(chars, {
     y: [{ from: "1rem" }, { to: 0, duration: dur }],
@@ -36,8 +36,8 @@ function fadeInUpC(
 }
 
   useEffect(() => {
-    fadeInLeftC(800, 100, 200, "#name"); 
-    fadeInUpC(200, 10, 1000, "#ket");
+    fadeInLeftC(800, 100, 200, "name"); 
+    fadeInUpC(200, 10, 1000, "ket");
   }, []);
 
   return (
