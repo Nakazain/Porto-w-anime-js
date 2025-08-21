@@ -10,11 +10,6 @@ function App() {
   ) {
     const { chars } = text.split(selectors, { chars: true });
 
-    chars.forEach((c) => {
-      c.style.transform = "translateX(2rem)";
-      c.style.opacity = "0";
-    });
-
     animate(chars, {
       x: [{ from: "2rem" }, { to: 0, duration, delay: waitUntil }],
       opacity: [{ from: 0 }, { to: 1, duration, delay: waitUntil }],
