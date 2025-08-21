@@ -2,8 +2,23 @@ import { useEffect } from "react";
 import { animate, stagger, text } from "animejs";
 
 function App() {
-  function fadeInLeftW(
-    duration: number,
+  function fadeInLeftC(
+    dur: number,
+    delay: number, 
+    waitUntil: number,
+    selectors: string
+  ) {
+    const { chars } = text.split(selectors, { chars: true });
+
+    animate(chars, {
+      x: [{ from: "2rem" }, { to: 0, duration: dur, delay: waitUntil }],
+      opacity: [{ from: 0 }, { to: 1, duration: dur, delay: waitUntil }],
+      delay: stagger(delay),
+    });
+  }
+
+  function fadeInUpC(
+    dur: number,
     delay: number,
     waitUntil: number,
     selectors: string
@@ -11,15 +26,15 @@ function App() {
     const { chars } = text.split(selectors, { chars: true });
 
     animate(chars, {
-      x: [{ from: "2rem" }, { to: 0, duration, delay: waitUntil }],
-      opacity: [{ from: 0 }, { to: 1, duration, delay: waitUntil }],
-      delay: stagger(delay),
+      y: [{ from: "1rem" }, { to: 0, duration: dur, delay: waitUntil }],
+      opacity: [{ from: 0 }, { to: 1, duration: dur, delay: waitUntil }],
+      delay: stagger(delay, { from: "random" }),
     });
   }
 
   useEffect(() => {
-    fadeInLeftW(800, 100, 0, "#name");
-    fadeInLeftW(400, 10, 800, "#ket");
+    fadeInLeftC(800, 100, 200, "#name");
+    fadeInUpC(200, 10, 400, "#ket");
   }, []);
 
   return (
