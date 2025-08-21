@@ -9,6 +9,7 @@ function App() {
     selectors: string
   ) {
     const { chars } = text.split(`#${selectors}`, { chars: true });
+    document.getElementById(selectors)?.classList.remove("opacity-0");
 
     animate(chars, {
       x: [{ from: "2rem" }, { to: 0, duration: dur }],
@@ -25,6 +26,7 @@ function App() {
     selectors: string
   ) {
     const { chars } = text.split(`#${selectors}`, { chars: true });
+    document.getElementById(selectors)?.classList.remove("opacity-0");
 
     animate(chars, {
       y: [{ from: "1rem" }, { to: 0, duration: dur }],
