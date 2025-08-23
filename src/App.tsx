@@ -76,9 +76,9 @@ function App() {
       });
     });
   }
-  
+
   function anim() {
-    animate(".absolute", {
+    animate(".shape", {
       x: () => utils.random(-10, viewportWidth / 3),
       y: () => utils.random(-10, viewportHeight / 1.5),
       rotate: () => utils.random(-180, 180),
@@ -122,22 +122,22 @@ function App() {
             <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"></button>
           </div>
           <div className="flex-1">
-            <Shape type="circle" />
-            <Shape type="circleOutline" />
-            <Shape type="square" />
-            <Shape type="squareOutline" />
-            <Shape type="rectangle" />
-            <Shape type="rectangleOutline" />
-            <Shape type="oval" />
-            <Shape type="ovalOutline" />
-            <Shape type="circle" />
-            <Shape type="circleOutline" />
-            <Shape type="square" />
-            <Shape type="squareOutline" />
-            <Shape type="rectangle" />
-            <Shape type="rectangleOutline" />
-            <Shape type="oval" />
-            <Shape type="ovalOutline" />
+            <Shape className="shape" type="circle" />
+            <Shape className="shape" type="circleOutline" />
+            <Shape className="shape" type="square" />
+            <Shape className="shape" type="squareOutline" />
+            <Shape className="shape" type="rectangle" />
+            <Shape className="shape" type="rectangleOutline" />
+            <Shape className="shape" type="oval" />
+            <Shape className="shape" type="ovalOutline" />
+            <Shape className="shape" type="circle" />
+            <Shape className="shape" type="circleOutline" />
+            <Shape className="shape" type="square" />
+            <Shape className="shape" type="squareOutline" />
+            <Shape className="shape" type="rectangle" />
+            <Shape className="shape" type="rectangleOutline" />
+            <Shape className="shape" type="oval" />
+            <Shape className="shape" type="ovalOutline" />
           </div>
         </div>
       </div>
