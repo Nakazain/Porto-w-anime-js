@@ -25,9 +25,9 @@ function App() {
     });
   }
 
-  useTextAnimation(".ans", "fadeInLeft", 800, 100);
-  useTextAnimation("#ket", "fadeInUp", 200, 5, 1000);
-  
+  useTextAnimation(".ans", "fadeInLeft", "first", 800, 100);
+  useTextAnimation("#ket", "fadeInUp", "random", 200, 5, 1000);
+
   useEffect(() => {
     anim();
   }, []);

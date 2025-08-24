@@ -2,13 +2,15 @@ import { useLayoutEffect } from "react";
 import { animate, stagger, text } from "animejs";
 
 type Effect = "fadeInLeft" | "fadeInUp" | "Bounce";
+type Order =  "first" | "center" | "last" | "random";
 
 export function useTextAnimation(
   selectors: string,
   effect: Effect = "fadeInLeft",
+  order: Order,
   dur: number = 600,
   staggerDelay: number = 100,
-  waitUntil?: number
+  waitUntil?: number,
 ) {
   useLayoutEffect(() => {
     let elements: Element[] = [];
@@ -26,6 +28,7 @@ export function useTextAnimation(
         elements.push(els[i]);
       }
     }
+
     elements.forEach((el) => {
       const { chars } = text.split(el as HTMLElement, { chars: true });
 
@@ -34,8 +37,8 @@ export function useTextAnimation(
           x: [{ from: "2rem" }, { to: 0, duration: dur }],
           opacity: [{ from: 0 }, { to: 1, duration: dur }],
           delay: waitUntil
-            ? 0
-            : stagger(staggerDelay, { start: waitUntil, from: "random" }),
+            ? stagger(staggerDelay, { from: order })
+            : stagger(staggerDelay, { start: waitUntil }),
           duration: dur,
         });
       }
@@ -45,8 +48,8 @@ export function useTextAnimation(
           y: [{ from: "1rem" }, { to: 0, duration: dur }],
           opacity: [{ from: 0 }, { to: 1, duration: dur }],
           delay: waitUntil
-            ? 0
-            : stagger(staggerDelay, { start: waitUntil, from: "random" }),
+            ? stagger(staggerDelay, { from: order })
+            : stagger(staggerDelay, { start: waitUntil, from: order }),
           duration: dur,
         });
       }
@@ -60,8 +63,8 @@ export function useTextAnimation(
           ],
           opacity: [{ from: 0 }, { to: 1 }],
           delay: waitUntil
-            ? 0
-            : stagger(staggerDelay, { start: waitUntil, from: "random" }),
+            ? stagger(staggerDelay, { from: order })
+            : stagger(staggerDelay, { start: waitUntil, from: order }),
           easing: "easeOutBounce",
         });
       }
