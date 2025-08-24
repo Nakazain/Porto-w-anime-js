@@ -11,18 +11,21 @@ function App() {
   console.log("Viewport Height:", viewportHeight);
 
   function anim() {
-    animate(".shape", {
-      x: () => utils.random(-10, viewportWidth / 3),
-      y: () => utils.random(-10, viewportHeight / 1.5),
-      rotate: () => utils.random(-180, 180),
-      scale: () => utils.random(0.25, 1.5, 3),
-      duration: utils.random(500, 1000),
-      ease: "inOutSine",
-      loop: true,
-      onLoop(self) {
-        self.refresh();
-      },
-    });
+    const Shape = document.querySelectorAll(".shape");
+    for (let i = 0; i < Shape.length; i++) {
+      animate(Shape[i], {
+        x: () => utils.random(-10, viewportWidth / 3),
+        y: () => utils.random(-10, viewportHeight / 1.5),
+        rotate: () => utils.random(-180, 180),
+        scale: () => utils.random(0.25, 1.5, 3),
+        duration: () => utils.random(700, 1500),
+        ease: "inOutBack",
+        loop: true,
+        onLoop(self) {
+          self.refresh();
+        },
+      });
+    }
   }
 
   useTextAnimation(".ans", "fadeInLeft", "first", 800, 100);
@@ -30,12 +33,15 @@ function App() {
 
   useEffect(() => {
     anim();
+    setTimeout(() => {
+      document.querySelector(".shape-container")?.classList.add("opacity-100");
+    }, 2500);
   }, []);
 
   return (
     <>
-      <div className="flex justify-center mt-10 mx-10">
-        <div className="flex items-center justify-center min-h-screen">
+      <div className="flex justify-center min-h-screen mt-10 mx-10">
+        <div className="flex items-center justify-center">
           <div className="min-h-screen ml-6 mt-10 flex-1">
             <h1
               id="name"
@@ -55,15 +61,15 @@ function App() {
               inventore! Eius omnis inventore enim reiciendis deleniti quas
               impedit architecto repellendus, nisi porro.
             </h2>
-            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">My Project</button>
+            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+              My Project
+            </button>
           </div>
-          <div className="flex-1">
+          <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
             <Shape className="shape" type="circle" />
             <Shape className="shape" type="circleOutline" />
             <Shape className="shape" type="square" />
             <Shape className="shape" type="squareOutline" />
-            <Shape className="shape" type="rectangle" />
-            <Shape className="shape" type="rectangleOutline" />
             <Shape className="shape" type="oval" />
             <Shape className="shape" type="ovalOutline" />
             <Shape className="shape" type="circle" />
