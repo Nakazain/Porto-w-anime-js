@@ -92,6 +92,8 @@ function App() {
     });
   }
 
+  
+
   useEffect(() => {
     fadeInLeftC(800, 100, 200, ".ans");
     fadeInUpC(200, 5, 1000, "#ket");
@@ -110,8 +112,10 @@ function App() {
               Hi 👋 I'm Zen
             </h1>
             <h2 className="ans mt-4 text-4xl font-bold text-gray-200 opacity-0">
-              I'm a <span id="my">Whatever</span>
-              <div className=" absolute bg-blue-500 w-2 h-2"></div>
+              I'm a <span id="role">Nanti diisi</span>
+              <span className="inline-flex items-center">
+                <span id="cursor" className="block bg-blue-500 w-2 h-2"></span>
+              </span>
             </h2>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
