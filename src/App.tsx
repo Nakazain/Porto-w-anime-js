@@ -40,7 +40,7 @@ function App() {
 
   useScrambleRoles(roles, { selector: ".role-text", dotSelector: ".role-dot", hold: 3000 });
   useTextAnimation(".ans", "fadeInLeft", "first", 800, 50);
-  useTextAnimation("#ket", "fadeInUp", "random", 200, 5, 2000);
+  useTextAnimation("#ket", "fadeInUp", "random", 200, 7, 1800);
 
   useEffect(() => {
     anim();

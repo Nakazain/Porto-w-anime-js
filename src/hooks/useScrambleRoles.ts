@@ -70,9 +70,7 @@ export function useScrambleRoles(
         });
 
         // This is still did't wokk
-        console.log(document.querySelector(dotSelector));
-        const dot = document.querySelector(dotSelector) as HTMLElement | null;
-        console.log("Dot element:", dot);
+        const dot: string | null = dotSelector;
         if (dot) {
           animate(dot, {
             x: [-el.offsetWidth, 0],
