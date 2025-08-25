@@ -1,11 +1,21 @@
 import { useEffect } from "react";
 import { animate, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
+import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
 
 function App() {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+  const roles = [
+    "Web Developer",
+    "Graphics Designer",
+    "Video Editor",
+    "Math Enthusiast",
+    "Anime Lover",
+    "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa i hate my self",
+  ];
+
 
   console.log("Viewport Width:", viewportWidth);
   console.log("Viewport Height:", viewportHeight);
@@ -28,14 +38,15 @@ function App() {
     }
   }
 
-  useTextAnimation(".ans", "fadeInLeft", "first", 800, 100);
-  useTextAnimation("#ket", "fadeInUp", "random", 200, 5, 1000);
+  useScrambleRoles(roles, { selector: ".role-text", dotSelector: ".role-dot", hold: 3000 });
+  useTextAnimation(".ans", "fadeInLeft", "first", 800, 50);
+  useTextAnimation("#ket", "fadeInUp", "random", 200, 5, 2000);
 
   useEffect(() => {
     anim();
     setTimeout(() => {
       document.querySelector(".shape-container")?.classList.add("opacity-100");
-    }, 2500);
+    }, 4000);
   }, []);
 
   return (
@@ -43,18 +54,20 @@ function App() {
       <div className="flex justify-center min-h-screen mt-10 mx-10">
         <div className="flex items-center justify-center">
           <div className="min-h-screen ml-6 mt-10 flex-1">
+            <div className="ans opacity-0">
             <h1
               id="name"
-              className="ans text-6xl font-bold text-white opacity-0"
+              className="text-6xl font-bold text-white"
             >
               Hi 👋 I'm Zen
             </h1>
-            <h2 className="ans mt-4 text-4xl font-bold text-gray-200 opacity-0">
-              I'm a <span id="role">Nanti diisi</span>
+            <h2 className="mt-4 text-4xl font-bold text-gray-200">
+              I'm a <span className="role-text">Web Developer</span>
               <span className="inline-flex items-center">
-                <span id="cursor" className="block bg-blue-500 w-2 h-2"></span>
+               <span className="role-dot bg-blue-500 w-2 h-2"></span>
               </span>
             </h2>
+            </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Recusandae iusto vel enim est asperiores quia et eligendi
