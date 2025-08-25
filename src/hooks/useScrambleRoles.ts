@@ -4,7 +4,7 @@ import { wrapWords } from "./useWrapWords";
 
 type UseScrambleRolesOpts = {
   selector?: string;
-  dotSelector?: string; 
+  dotSelector?: string;
   hold?: number;
   inDur?: number;
   outDur?: number;
@@ -19,7 +19,7 @@ export function useScrambleRoles(
     dotSelector = ".role-dot",
     hold = 1200,
     inDur = 300,
-    outDur = 100,
+    outDur = 200,
   } = opts;
 
   const mounted = useRef(true);
@@ -39,6 +39,7 @@ export function useScrambleRoles(
   }
 
   useLayoutEffect(() => {
+    // Prevent multiple inits
     if (started.current) return;
     started.current = true;
     mounted.current = true;
@@ -54,12 +55,29 @@ export function useScrambleRoles(
         wrapWords(el, "word", "char");
         const chars = Array.from(el.querySelectorAll<HTMLElement>(".char"));
 
+        // If no chars, skip to next
         if (!chars.length) {
           await new Promise((r) => setTimeout(r, hold));
           idx = (idx + 1) % roles.length;
           continue;
         }
 
+        // Animate dot if exists
+        const dot: string | null = dotSelector;
+        if (dot) {
+          animate(dot, {
+            x: [
+              { to: 0, duration: inDur, delay: inDur }, 
+              { to: -el.offsetWidth, duration: outDur, delay: hold },
+            ],
+            scaleX: [8, 1],
+            transformOrigin: ["0% 0%", "0% 0%"],
+            easing: "out(3)",
+            composition: "blend",
+          });
+        }
+
+        // Animate chars in
         await animatePromise(chars, {
           opacity: [0, 1],
           scaleX: [0, 1],
@@ -69,21 +87,10 @@ export function useScrambleRoles(
           easing: "out(3)",
         });
 
-        // This is still did't wokk
-        const dot: string | null = dotSelector;
-        if (dot) {
-          animate(dot, {
-            x: [-el.offsetWidth, 0],
-            scaleX: [8, 1],
-            transformOrigin: ["0% 0%", "0% 0%"],
-            duration: chars.length * 25 + 75,
-            easing: "out(3)",
-            onComplete: () => console.log("Dot element:", dot),
-          });
-        }
-
+        // Hold
         await new Promise((r) => setTimeout(r, hold));
 
+        // Animate chars out
         await animatePromise(chars, {
           opacity: [1, 0],
           scaleX: [1, 0],

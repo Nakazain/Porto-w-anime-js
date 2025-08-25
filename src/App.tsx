@@ -61,10 +61,10 @@ function App() {
             >
               Hi 👋 I'm Zen
             </h1>
-            <h2 className="mt-4 text-4xl font-bold text-gray-200">
+            <h2 className="mt-4 relative text-4xl font-bold text-gray-200">
               I'm a <span className="role-text">Web Developer</span>
               <span className="inline-flex items-center">
-               <span className="role-dot bg-blue-500 w-2 h-2"></span>
+               <span className="role-dot absolute bg-blue-500 w-2 h-2"></span>
               </span>
             </h2>
             </div>
