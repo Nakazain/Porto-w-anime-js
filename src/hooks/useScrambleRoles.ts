@@ -30,8 +30,6 @@ export function useScrambleRoles(
     return new Promise<void>((resolve) => {
       animate(targets, {
         ...params,
-        onBegin: () =>
-          document.querySelector(dotSelector).classList.remove("opacity-0"),
         onComplete() {
           if (typeof params.onComplete === "function") params.onComplete();
           resolve();
