@@ -7,6 +7,7 @@ import Shape from "./component/shape";
 function App() {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+
   const roles = [
     "Web Developer",
     "Graphics Designer",
@@ -16,10 +17,7 @@ function App() {
     "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa i hate my self",
   ];
 
-
-  console.log("Viewport Width:", viewportWidth);
-  console.log("Viewport Height:", viewportHeight);
-
+  // Animating shape
   function anim() {
     const Shape = document.querySelectorAll(".shape");
     for (let i = 0; i < Shape.length; i++) {
@@ -38,8 +36,9 @@ function App() {
     }
   }
 
+  // Runing animation from hooks
   useScrambleRoles(roles, { selector: ".role-text", dotSelector: ".role-dot", hold: 3000 });
-  useTextAnimation(".ans", "fadeInLeft", "first", 800, 50);
+  useTextAnimation(".ans", "Bounce", "first", 800, 50);
   useTextAnimation("#ket", "fadeInUp", "random", 200, 7, 1800);
 
   useEffect(() => {
@@ -64,7 +63,7 @@ function App() {
             <h2 className="mt-4 relative text-4xl font-bold text-gray-200">
               I'm a <span className="role-text">Web Developer</span>
               <span className="inline-flex items-center">
-               <span className="role-dot absolute bg-blue-500 w-2 h-2"></span>
+               <span className="role-dot absolute bg-blue-500 w-3 h-1"></span>
               </span>
             </h2>
             </div>

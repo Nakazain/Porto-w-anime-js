@@ -67,13 +67,13 @@ export function useScrambleRoles(
         if (dot) {
           animate(dot, {
             x: [-el.offsetWidth, 0],
-            scaleX: [8, 1],
+            scaleX: [10, 1],
             transformOrigin: ["0% 0%", "0% 0%"],
             easing: "out(3)",
             duration: chars.length * 25 + 75,
           });
         }
-
+        
         // Animate chars in
         await animatePromise(chars, {
           opacity: [0, 1],
@@ -85,7 +85,8 @@ export function useScrambleRoles(
 
         // Hold
         await new Promise((r) => setTimeout(r, hold));
-
+        
+        // Animate dot if exists
         if (dot) {
           animate(dot, {
             x: -el.offsetWidth,
