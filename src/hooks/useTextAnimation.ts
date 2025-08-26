@@ -57,8 +57,7 @@ export function useTextAnimation(
       if (effect === "Bounce") {
         animate(chars, {
           y: [
-            { from: 0 },
-            { to: "-1rem", duration: dur / 2 },
+            { to: "-1.5rem", duration: dur / 2 },
             { to: 0, duration: dur / 2 },
           ],
           opacity: [{ from: 0 }, { to: 1 }],

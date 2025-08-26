@@ -14,7 +14,6 @@ function App() {
     "Video Editor",
     "Math Enthusiast",
     "Anime Lover",
-    "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa i hate my self",
   ];
 
   // Animating shape
@@ -40,13 +39,16 @@ function App() {
   useScrambleRoles(roles, { selector: ".role-text", dotSelector: ".role-dot", hold: 3000 });
   useTextAnimation(".ans", "Bounce", "first", 800, 50);
   useTextAnimation("#ket", "fadeInUp", "random", 200, 7, 1800);
-
   useEffect(() => {
     anim();
+    setTimeout(() => {
+      document.querySelector("button")?.classList.add("opacity-100");
+    }, 3000);
     setTimeout(() => {
       document.querySelector(".shape-container")?.classList.add("opacity-100");
     }, 4000);
   }, []);
+
 
   return (
     <>
@@ -60,10 +62,10 @@ function App() {
             >
               Hi 👋 I'm Zen
             </h1>
-            <h2 className="mt-4 relative text-4xl font-bold text-gray-200">
+            <h2 className="mt-4 text-4xl font-bold text-gray-200">
               I'm a <span className="role-text">Web Developer</span>
               <span className="inline-flex items-center">
-               <span className="role-dot absolute bg-blue-500 w-3 h-1"></span>
+               <span className="role-dot text-blue-500">.</span>
               </span>
             </h2>
             </div>
@@ -73,7 +75,7 @@ function App() {
               inventore! Eius omnis inventore enim reiciendis deleniti quas
               impedit architecto repellendus, nisi porro.
             </h2>
-            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-500 opacity-0">
               My Project
             </button>
           </div>
@@ -82,14 +84,6 @@ function App() {
             <Shape className="shape" type="circleOutline" />
             <Shape className="shape" type="square" />
             <Shape className="shape" type="squareOutline" />
-            <Shape className="shape" type="oval" />
-            <Shape className="shape" type="ovalOutline" />
-            <Shape className="shape" type="circle" />
-            <Shape className="shape" type="circleOutline" />
-            <Shape className="shape" type="square" />
-            <Shape className="shape" type="squareOutline" />
-            <Shape className="shape" type="rectangle" />
-            <Shape className="shape" type="rectangleOutline" />
             <Shape className="shape" type="oval" />
             <Shape className="shape" type="ovalOutline" />
           </div>

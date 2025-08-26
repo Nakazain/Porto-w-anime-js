@@ -30,6 +30,8 @@ export function useScrambleRoles(
     return new Promise<void>((resolve) => {
       animate(targets, {
         ...params,
+        onBegin: () =>
+          document.querySelector(dotSelector).classList.remove("opacity-0"),
         onComplete() {
           if (typeof params.onComplete === "function") params.onComplete();
           resolve();
@@ -63,9 +65,8 @@ export function useScrambleRoles(
         }
 
         // Animate dot if exists
-        const dot: string | null = dotSelector;
-        if (dot) {
-          animate(dot, {
+        if (dotSelector) {
+          animate(dotSelector, {
             x: [-el.offsetWidth, 0],
             scaleX: [10, 1],
             transformOrigin: ["0% 0%", "0% 0%"],
@@ -73,22 +74,22 @@ export function useScrambleRoles(
             duration: chars.length * 25 + 75,
           });
         }
-        
+
         // Animate chars in
         await animatePromise(chars, {
           opacity: [0, 1],
           scaleX: [0, 1],
           x: [10, 0],
           duration: inDur,
-          delay: stagger(25, { from: "first", ease: "in(3)", start: 100  }),
+          delay: stagger(25, { from: "first", ease: "in(3)", start: 100 }),
         });
 
         // Hold
         await new Promise((r) => setTimeout(r, hold));
-        
+
         // Animate dot if exists
-        if (dot) {
-          animate(dot, {
+        if (dotSelector) {
+          animate(dotSelector, {
             x: -el.offsetWidth,
             scaleX: [4, 1],
             transformOrigin: ["100% 0%", "100% 0%"],
