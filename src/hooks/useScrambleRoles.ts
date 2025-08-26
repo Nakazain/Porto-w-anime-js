@@ -66,14 +66,11 @@ export function useScrambleRoles(
         const dot: string | null = dotSelector;
         if (dot) {
           animate(dot, {
-            x: [
-              { to: 0, duration: inDur, delay: inDur }, 
-              { to: -el.offsetWidth, duration: outDur, delay: hold },
-            ],
+            x: [-el.offsetWidth, 0],
             scaleX: [8, 1],
             transformOrigin: ["0% 0%", "0% 0%"],
             easing: "out(3)",
-            composition: "blend",
+            duration: chars.length * 25 + 75,
           });
         }
 
@@ -83,20 +80,28 @@ export function useScrambleRoles(
           scaleX: [0, 1],
           x: [10, 0],
           duration: inDur,
-          delay: stagger(25, { from: "first", start: 100 }),
-          easing: "out(3)",
+          delay: stagger(25, { from: "first", ease: "in(3)", start: 100  }),
         });
 
         // Hold
         await new Promise((r) => setTimeout(r, hold));
+
+        if (dot) {
+          animate(dot, {
+            x: -el.offsetWidth,
+            scaleX: [4, 1],
+            transformOrigin: ["100% 0%", "100% 0%"],
+            easing: "out(3)",
+            duration: chars.length * 25 + 100,
+          });
+        }
 
         // Animate chars out
         await animatePromise(chars, {
           opacity: [1, 0],
           scaleX: [1, 0],
           duration: outDur,
-          delay: stagger(20, { from: "last" }),
-          easing: "in(3)",
+          delay: stagger(20, { from: "last", ease: "in(3)" }),
         });
 
         idx = (idx + 1) % roles.length;
