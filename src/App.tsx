@@ -14,7 +14,6 @@ function App() {
     "Gamer",
     "Web Developer",
     "Graphics Designer",
-    "Video Editor",
     "Math Enthusiast",
     "Anime Lover",
   ];
@@ -62,7 +61,7 @@ function App() {
   useEffect(() => {
     anim();
     setTimeout(() => {
-      document.querySelector("button")?.classList.add("opacity-100");
+      document.querySelector(".fade")?.classList.add("opacity-100");
     }, 3000);
     setTimeout(() => {
       document.querySelector(".shape-container")?.classList.add("opacity-100");
@@ -93,7 +92,11 @@ function App() {
               optimal work. I'm always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
-            <Btn><p>My Project</p></Btn>
+            <div className="fade transition-opacity duration-1000 opacity-0">
+              <Btn>
+                <p>My Project</p>
+              </Btn>
+            </div>
           </div>
           <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
             <Shape className="shape" type="circle" />
