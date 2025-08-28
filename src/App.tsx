@@ -44,7 +44,7 @@ function App() {
   });
   useTextAnimation({
     selectors: ".ans",
-    effect: "Bounce",
+    effect: "fadeInLeft",
     order: "first",
     dur: 800,
     staggerDelay: 50,
@@ -69,9 +69,9 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center min-h-screen mt-10 mx-10">
+      <div className="flex justify-center min-h-screen mx-10">
         <div className="flex items-center justify-center">
-          <div className="min-h-screen ml-6 mt-10 flex-1">
+          <div className="ml-6 flex-1">
             <div className="ans opacity-0">
               <h1 id="name" className="text-6xl font-bold text-white">
                 Hi 👋 I'm Zen
