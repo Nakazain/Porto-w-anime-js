@@ -4,14 +4,25 @@ import { animate, stagger, text } from "animejs";
 type Effect = "fadeInLeft" | "fadeInUp" | "Bounce";
 type Order = "first" | "center" | "last" | "random";
 
-export function useTextAnimation(
-  selectors: string,
-  effect: Effect = "fadeInLeft",
-  order: Order,
-  dur: number = 600,
-  staggerDelay: number = 100,
-  waitUntil?: number
-) {
+type AnimationOptions = {
+  selectors: string;
+  effect?: Effect;
+  order?: Order;
+  dur?: number;
+  staggerDelay?: number;
+  waitUntil?: number;
+  onComplete?: () => void;
+};
+
+export function useTextAnimation({
+  selectors,
+  effect = "fadeInLeft",
+  order = "first",
+  dur = 600,
+  staggerDelay = 100,
+  waitUntil,
+  onComplete,
+}: AnimationOptions) {
   useLayoutEffect(() => {
     let elements: Element[] = [];
 
@@ -40,6 +51,9 @@ export function useTextAnimation(
             ? stagger(staggerDelay, { start: waitUntil })
             : stagger(staggerDelay, { from: order }),
           duration: dur,
+          onComplete: () => {
+            onComplete?.();
+          },
         });
       }
 
@@ -51,6 +65,9 @@ export function useTextAnimation(
             ? stagger(staggerDelay, { start: waitUntil, from: order })
             : stagger(staggerDelay, { from: order }),
           duration: dur,
+          onComplete: () => {
+            onComplete?.();
+          },
         });
       }
 
@@ -65,6 +82,9 @@ export function useTextAnimation(
             ? stagger(staggerDelay, { start: waitUntil, from: order })
             : stagger(staggerDelay, { from: order }),
           easing: "easeOutBounce",
+          onComplete: () => {
+            onComplete?.();
+          },
         });
       }
     });

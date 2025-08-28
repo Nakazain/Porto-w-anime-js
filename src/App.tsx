@@ -35,10 +35,27 @@ function App() {
     }
   }
 
-  // Runing animation from hooks
-  useScrambleRoles(roles, { selector: ".role-text", dotSelector: ".role-dot", hold: 3000 });
-  useTextAnimation(".ans", "Bounce", "first", 800, 50);
-  useTextAnimation("#ket", "fadeInUp", "random", 200, 7, 1800);
+  // Runing animation
+  useScrambleRoles(roles, {
+    selector: ".role-text",
+    dotSelector: ".role-dot",
+    hold: 1800,
+  });
+  useTextAnimation({
+    selectors: ".ans",
+    effect: "Bounce",
+    order: "first",
+    dur: 800,
+    staggerDelay: 50,
+  });
+  useTextAnimation({
+    selectors: "#ket",
+    effect: "fadeInUp",
+    order: "random",
+    dur: 200,
+    staggerDelay: 6,
+    waitUntil: 1800,
+  });
   useEffect(() => {
     anim();
     setTimeout(() => {
@@ -49,25 +66,21 @@ function App() {
     }, 4000);
   }, []);
 
-
   return (
     <>
       <div className="flex justify-center min-h-screen mt-10 mx-10">
         <div className="flex items-center justify-center">
           <div className="min-h-screen ml-6 mt-10 flex-1">
             <div className="ans opacity-0">
-            <h1
-              id="name"
-              className="text-6xl font-bold text-white"
-            >
-              Hi 👋 I'm Zen
-            </h1>
-            <h2 className="mt-4 text-4xl font-bold text-gray-200">
-              I'm a <span className="role-text">Web Developer</span>
-              <span className="inline-flex items-center">
-               <span className="role-dot text-blue-500">.</span>
-              </span>
-            </h2>
+              <h1 id="name" className="text-6xl font-bold text-white">
+                Hi 👋 I'm Zen
+              </h1>
+              <h2 className="mt-4 text-4xl font-bold text-gray-200">
+                I'm a <span className="role-text">Web Developer</span>
+                <span className="inline-flex items-center">
+                  <span className="role-dot text-blue-500">.</span>
+                </span>
+              </h2>
             </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
