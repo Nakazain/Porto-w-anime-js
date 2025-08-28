@@ -39,7 +39,7 @@ function App() {
   useScrambleRoles(roles, {
     selector: ".role-text",
     dotSelector: ".role-dot",
-    hold: 1800,
+    hold: 1500,
   });
   useTextAnimation({
     selectors: ".ans",
