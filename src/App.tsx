@@ -3,6 +3,8 @@ import { animate, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
 import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
+import NavBar from "./component/navbar";
+import Btn from "./component/button";
 
 function App() {
   const viewportWidth = window.innerWidth;
@@ -69,6 +71,7 @@ function App() {
 
   return (
     <>
+      <NavBar />
       <div className="flex justify-center min-h-screen mx-10">
         <div className="flex items-center justify-center">
           <div className="ml-6 flex-1">
@@ -83,10 +86,14 @@ function App() {
                 </span>
               </h2>
             </div>
-            <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">I'm passionate about digital and technology, from graphic design and video editing to building websites from scratch. I absolutely love learning new things and experimenting to produce engaging and optimal work. I'm always looking for ways to improve the quality and efficiency of my work.</h2>
-            <button className="mt-6 px-6 py-3 bg-transparent border-2 border-primary text-white rounded-lg hover:bg-primary transition-all duration-300 opacity-0">
-              My Project
-            </button>
+            <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
+              I'm passionate about digital and technology, from graphic design
+              and video editing to building websites from scratch. I absolutely
+              love learning new things and experimenting to produce engaging and
+              optimal work. I'm always looking for ways to improve the quality
+              and efficiency of my work.
+            </h2>
+            <Btn><p>My Project</p></Btn>
           </div>
           <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
             <Shape className="shape" type="circle" />
