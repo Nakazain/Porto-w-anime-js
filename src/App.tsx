@@ -9,6 +9,7 @@ function App() {
   const viewportHeight = window.innerHeight;
 
   const roles = [
+    "Gamer",
     "Web Developer",
     "Graphics Designer",
     "Video Editor",
@@ -78,17 +79,12 @@ function App() {
               <h2 className="mt-4 text-4xl font-bold text-gray-200">
                 I'm a <span className="role-text">Web Developer</span>
                 <span className="inline-flex items-center">
-                  <span className="role-dot text-blue-500">.</span>
+                  <span className="role-dot text-primary">.</span>
                 </span>
               </h2>
             </div>
-            <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Recusandae iusto vel enim est asperiores quia et eligendi
-              inventore! Eius omnis inventore enim reiciendis deleniti quas
-              impedit architecto repellendus, nisi porro.
-            </h2>
-            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-500 opacity-0">
+            <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">I'm passionate about digital and technology, from graphic design and video editing to building websites from scratch. I absolutely love learning new things and experimenting to produce engaging and optimal work. I'm always looking for ways to improve the quality and efficiency of my work.</h2>
+            <button className="mt-6 px-6 py-3 bg-transparent border-2 border-primary text-white rounded-lg hover:bg-primary transition-all duration-300 opacity-0">
               My Project
             </button>
           </div>
