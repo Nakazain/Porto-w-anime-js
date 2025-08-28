@@ -85,7 +85,7 @@ export function useScrambleRoles(
         // Hold
         await new Promise((r) => setTimeout(r, hold));
 
-        // Animate dot if exists
+        // Animate dot again
         if (dotSelector) {
           animate(dotSelector, {
             x: -el.offsetWidth,

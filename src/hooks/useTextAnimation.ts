@@ -26,6 +26,7 @@ export function useTextAnimation({
   useLayoutEffect(() => {
     let elements: Element[] = [];
 
+    // Remove opacity
     if (selectors.startsWith("#")) {
       const el = document.getElementById(selectors.slice(1));
       if (el) {
@@ -43,6 +44,7 @@ export function useTextAnimation({
     elements.forEach((el) => {
       const { chars } = text.split(el as HTMLElement, { chars: true });
 
+      // Fade in left effect
       if (effect === "fadeInLeft") {
         animate(chars, {
           x: [{ from: "2rem" }, { to: 0, duration: dur }],
@@ -57,6 +59,7 @@ export function useTextAnimation({
         });
       }
 
+      // Fade in up effect
       if (effect === "fadeInUp") {
         animate(chars, {
           y: [{ from: "1rem" }, { to: 0, duration: dur }],
@@ -71,6 +74,7 @@ export function useTextAnimation({
         });
       }
 
+      // Bounce effect
       if (effect === "Bounce") {
         animate(chars, {
           y: [
