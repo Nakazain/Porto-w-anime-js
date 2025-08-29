@@ -5,6 +5,7 @@ import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
 import NavBar from "./component/navbar";
 import Btn from "./component/button";
+import Card from "./component/card"
 
 function App() {
   const viewportWidth = window.innerWidth;
@@ -108,9 +109,9 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <div className="flex min-h-screen">
-
-      </div> */}
+      <div className="flex justify-center items-center min-h-screen">
+        <Card />
+      </div>
     </>
   );
 }
