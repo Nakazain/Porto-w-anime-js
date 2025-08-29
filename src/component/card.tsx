@@ -1,8 +1,8 @@
 export default function Card() {
   return (
-    <div className=" bg-neutral-800 w-80">
+    <div className="cursor-pointer bg-neutral-800 border border-primary w-80 group transition-all duration-300 hover:rounded-2xl hover:shadow-lg hover:shadow-accent hover:-translate-y-2 overflow-hidden">
       <div>
-        <img className="h-48 " src="/tes.jpg" alt="" />
+        <img className="h-48" src="/tes.jpg" alt="" />
       </div>
       <div className="m-4">
         <p className="text-2xl font-bold mb-2">Title</p>

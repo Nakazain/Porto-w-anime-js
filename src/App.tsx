@@ -109,7 +109,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center gap-4 items-center min-h-screen">
+        <Card />
         <Card />
       </div>
     </>
