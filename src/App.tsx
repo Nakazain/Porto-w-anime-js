@@ -5,7 +5,7 @@ import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
 import NavBar from "./component/navbar";
 import Btn from "./component/button";
-import Card from "./component/card"
+import Card from "./component/card";
 
 function App() {
   const viewportWidth = window.innerWidth;
@@ -109,9 +109,19 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center gap-4 items-center min-h-screen">
-        <Card />
-        <Card />
+      <div className="flex justify-center items-center min-h-screen">
+        <div>
+          <div className="my-6">
+            <h3 className="text-3xl text-center font-bold">My Project</h3>
+            <p className="text-xl text-center font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Several projects that I have created
+            </p>
+          </div>
+          <div className="flex justify-center gap-4">
+            <Card />
+            <Card />
+          </div>
+        </div>
       </div>
     </>
   );
