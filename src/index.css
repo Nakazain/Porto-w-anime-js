@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3B82F6;
-  --color-secondary: #8B5CF6;
-  --color-accent: #22D3EE;
+  --color-primary: #3b82f6;
+  --color-secondary: #8b5cf6;
+  --color-accent: #22d3ee;
+
+  --animate-gradient-spin: gradient-spin 3s linear infinite;
+  @keyframes gradient-spin {
+          0% { backgroundPosition: '0% 50%' }
+          50% { backgroundPosition: '100% 50%' }
+          100% { backgroundPosition: '0% 50%' }
+}
 }
