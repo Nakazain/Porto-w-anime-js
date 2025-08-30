@@ -109,7 +109,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center min-h-screen">
+      {/* <div className="flex justify-center items-center min-h-screen">
         <div>
           <div className="my-6">
             <h3 className="text-3xl text-center font-bold">My Project</h3>
@@ -122,7 +122,7 @@ function App() {
             <Card />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
