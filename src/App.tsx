@@ -5,7 +5,7 @@ import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
 import NavBar from "./component/navbar";
 import Btn from "./component/button";
-// import Card from "./component/card";
+import Card from "./component/card";
 
 function App() {
   const viewportWidth = window.innerWidth;
@@ -39,35 +39,35 @@ function App() {
   }
 
   // Runing animation
-  useScrambleRoles(roles, {
-    selector: ".role-text",
-    dotSelector: ".role-dot",
-    hold: 1500,
-  });
-  useTextAnimation({
-    selectors: ".ans",
-    effect: "fadeInLeft",
-    order: "first",
-    dur: 800,
-    staggerDelay: 50,
-  });
-  useTextAnimation({
-    selectors: "#ket",
-    effect: "fadeInUp",
-    order: "random",
-    dur: 200,
-    staggerDelay: 6,
-    waitUntil: 1800,
-  });
-  useEffect(() => {
-    anim();
-    setTimeout(() => {
-      document.querySelector(".fade")?.classList.add("opacity-100");
-    }, 3000);
-    setTimeout(() => {
-      document.querySelector(".shape-container")?.classList.add("opacity-100");
-    }, 4000);
-  }, []);
+  // useScrambleRoles(roles, {
+  //   selector: ".role-text",
+  //   dotSelector: ".role-dot",
+  //   hold: 1500,
+  // });
+  // useTextAnimation({
+  //   selectors: ".ans",
+  //   effect: "fadeInLeft",
+  //   order: "first",
+  //   dur: 800,
+  //   staggerDelay: 50,
+  // });
+  // useTextAnimation({
+  //   selectors: "#ket",
+  //   effect: "fadeInUp",
+  //   order: "random",
+  //   dur: 200,
+  //   staggerDelay: 6,
+  //   waitUntil: 1800,
+  // });
+  // useEffect(() => {
+  //   anim();
+  //   setTimeout(() => {
+  //     document.querySelector(".fade")?.classList.add("opacity-100");
+  //   }, 3000);
+  //   setTimeout(() => {
+  //     document.querySelector(".shape-container")?.classList.add("opacity-100");
+  //   }, 4000);
+  // }, []);
 
   return (
     <>
@@ -109,7 +109,7 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-screen">
         <div>
           <div className="my-6">
             <h3 className="text-3xl text-center font-bold">My Project</h3>
@@ -122,7 +122,29 @@ function App() {
             <Card />
           </div>
         </div>
-      </div> */}
+      </div>
+      <div className="min-h-screen">
+        <div className="p-2 sticky flex gap-2 top-10 left-1/2 -translate-x-1/2 bg-neutral-900 rounded-lg w-fit">
+          <p className="bg-neutral-800 cursor-pointer p-2 rounded-md hover:bg-neutral-900 transition-colors duration-300">
+            Design Project
+          </p>
+          <p className="bg-neutral-800 cursor-pointer p-2 rounded-md hover:bg-neutral-900 transition-colors duration-300">
+            Web Project
+          </p>
+        </div>
+        <div className="flex justify-center items-center gap-4 min-h-screen mx-20">
+            <img className="h-80" src="/tes.jpg" alt="" />
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold">Project Name</h3>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius
+              nemo eveniet nihil! Delectus commodi voluptatibus esse aut, est
+              reiciendis deleniti culpa temporibus at inventore corrupti sunt
+              quidem odio dolores maiores.
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
