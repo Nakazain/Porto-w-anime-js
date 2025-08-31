@@ -39,35 +39,35 @@ function App() {
   }
 
   // Runing animation
-  // useScrambleRoles(roles, {
-  //   selector: ".role-text",
-  //   dotSelector: ".role-dot",
-  //   hold: 1500,
-  // });
-  // useTextAnimation({
-  //   selectors: ".ans",
-  //   effect: "fadeInLeft",
-  //   order: "first",
-  //   dur: 800,
-  //   staggerDelay: 50,
-  // });
-  // useTextAnimation({
-  //   selectors: "#ket",
-  //   effect: "fadeInUp",
-  //   order: "random",
-  //   dur: 200,
-  //   staggerDelay: 6,
-  //   waitUntil: 1800,
-  // });
-  // useEffect(() => {
-  //   anim();
-  //   setTimeout(() => {
-  //     document.querySelector(".fade")?.classList.add("opacity-100");
-  //   }, 3000);
-  //   setTimeout(() => {
-  //     document.querySelector(".shape-container")?.classList.add("opacity-100");
-  //   }, 4000);
-  // }, []);
+  useScrambleRoles(roles, {
+    selector: ".role-text",
+    dotSelector: ".role-dot",
+    hold: 1500,
+  });
+  useTextAnimation({
+    selectors: ".ans",
+    effect: "fadeInLeft",
+    order: "first",
+    dur: 800,
+    staggerDelay: 50,
+  });
+  useTextAnimation({
+    selectors: "#ket",
+    effect: "fadeInUp",
+    order: "random",
+    dur: 200,
+    staggerDelay: 6,
+    waitUntil: 1800,
+  });
+  useEffect(() => {
+    anim();
+    setTimeout(() => {
+      document.querySelector(".fade")?.classList.add("opacity-100");
+    }, 3000);
+    setTimeout(() => {
+      document.querySelector(".shape-container")?.classList.add("opacity-100");
+    }, 4000);
+  }, []);
 
   return (
     <>
