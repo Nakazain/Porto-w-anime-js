@@ -6,6 +6,7 @@ import Shape from "./component/shape";
 import NavBar from "./component/navbar";
 import Btn from "./component/button";
 import Card from "./component/card";
+import Input from "./component/input";
 
 function App() {
   const viewportWidth = window.innerWidth;
@@ -20,54 +21,54 @@ function App() {
   ];
 
   // Animating shape
-  // function anim() {
-  //   const Shape = document.querySelectorAll(".shape");
-  //   for (let i = 0; i < Shape.length; i++) {
-  //     animate(Shape[i], {
-  //       x: () => utils.random(-10, viewportWidth / 3),
-  //       y: () => utils.random(-10, viewportHeight / 1.5),
-  //       rotate: () => utils.random(-180, 180),
-  //       scale: () => utils.random(0.25, 1.5, 3),
-  //       duration: () => utils.random(700, 1500),
-  //       ease: "inOutBack",
-  //       loop: true,
-  //       onLoop(self) {
-  //         self.refresh();
-  //       },
-  //     });
-  //   }
-  // }
+  function anim() {
+    const Shape = document.querySelectorAll(".shape");
+    for (let i = 0; i < Shape.length; i++) {
+      animate(Shape[i], {
+        x: () => utils.random(-10, viewportWidth / 3),
+        y: () => utils.random(-10, viewportHeight / 1.5),
+        rotate: () => utils.random(-180, 180),
+        scale: () => utils.random(0.25, 1.5, 3),
+        duration: () => utils.random(700, 1500),
+        ease: "inOutBack",
+        loop: true,
+        onLoop(self) {
+          self.refresh();
+        },
+      });
+    }
+  }
 
-  // // Runing animation
-  // useScrambleRoles(roles, {
-  //   selector: ".role-text",
-  //   dotSelector: ".role-dot",
-  //   hold: 1500,
-  // });
-  // useTextAnimation({
-  //   selectors: ".ans",
-  //   effect: "fadeInLeft",
-  //   order: "first",
-  //   dur: 800,
-  //   staggerDelay: 50,
-  // });
-  // useTextAnimation({
-  //   selectors: "#ket",
-  //   effect: "fadeInUp",
-  //   order: "random",
-  //   dur: 200,
-  //   staggerDelay: 6,
-  //   waitUntil: 1800,
-  // });
-  // useEffect(() => {
-  //   anim();
-  //   setTimeout(() => {
-  //     document.querySelector(".fade")?.classList.add("opacity-100");
-  //   }, 3000);
-  //   setTimeout(() => {
-  //     document.querySelector(".shape-container")?.classList.add("opacity-100");
-  //   }, 4000);
-  // }, []);
+  // Runing animation
+  useScrambleRoles(roles, {
+    selector: ".role-text",
+    dotSelector: ".role-dot",
+    hold: 1500,
+  });
+  useTextAnimation({
+    selectors: ".ans",
+    effect: "fadeInLeft",
+    order: "first",
+    dur: 800,
+    staggerDelay: 50,
+  });
+  useTextAnimation({
+    selectors: "#ket",
+    effect: "fadeInUp",
+    order: "random",
+    dur: 200,
+    staggerDelay: 6,
+    waitUntil: 1800,
+  });
+  useEffect(() => {
+    anim();
+    setTimeout(() => {
+      document.querySelector(".fade")?.classList.add("opacity-100");
+    }, 3000);
+    setTimeout(() => {
+      document.querySelector(".shape-container")?.classList.add("opacity-100");
+    }, 4000);
+  }, []);
 
   return (
     <>
@@ -126,8 +127,8 @@ function App() {
       <div className="flex justify-center items-center min-h-screen">
         <form>
           <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
-          <input className="border border-primary p-2 rounded-md bg-neutral-900" placeholder="Email" />
-          <input className="border border-primary p-2 rounded-md bg-neutral-900" placeholder="Email" />
+          <Input></Input>
+          <Input></Input>
           <textarea className="border border-primary p-2 rounded-md bg-neutral-900" placeholder="Email" />
         </form>
       </div>
