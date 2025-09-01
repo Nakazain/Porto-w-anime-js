@@ -20,54 +20,54 @@ function App() {
   ];
 
   // Animating shape
-  function anim() {
-    const Shape = document.querySelectorAll(".shape");
-    for (let i = 0; i < Shape.length; i++) {
-      animate(Shape[i], {
-        x: () => utils.random(-10, viewportWidth / 3),
-        y: () => utils.random(-10, viewportHeight / 1.5),
-        rotate: () => utils.random(-180, 180),
-        scale: () => utils.random(0.25, 1.5, 3),
-        duration: () => utils.random(700, 1500),
-        ease: "inOutBack",
-        loop: true,
-        onLoop(self) {
-          self.refresh();
-        },
-      });
-    }
-  }
+  // function anim() {
+  //   const Shape = document.querySelectorAll(".shape");
+  //   for (let i = 0; i < Shape.length; i++) {
+  //     animate(Shape[i], {
+  //       x: () => utils.random(-10, viewportWidth / 3),
+  //       y: () => utils.random(-10, viewportHeight / 1.5),
+  //       rotate: () => utils.random(-180, 180),
+  //       scale: () => utils.random(0.25, 1.5, 3),
+  //       duration: () => utils.random(700, 1500),
+  //       ease: "inOutBack",
+  //       loop: true,
+  //       onLoop(self) {
+  //         self.refresh();
+  //       },
+  //     });
+  //   }
+  // }
 
-  // Runing animation
-  useScrambleRoles(roles, {
-    selector: ".role-text",
-    dotSelector: ".role-dot",
-    hold: 1500,
-  });
-  useTextAnimation({
-    selectors: ".ans",
-    effect: "fadeInLeft",
-    order: "first",
-    dur: 800,
-    staggerDelay: 50,
-  });
-  useTextAnimation({
-    selectors: "#ket",
-    effect: "fadeInUp",
-    order: "random",
-    dur: 200,
-    staggerDelay: 6,
-    waitUntil: 1800,
-  });
-  useEffect(() => {
-    anim();
-    setTimeout(() => {
-      document.querySelector(".fade")?.classList.add("opacity-100");
-    }, 3000);
-    setTimeout(() => {
-      document.querySelector(".shape-container")?.classList.add("opacity-100");
-    }, 4000);
-  }, []);
+  // // Runing animation
+  // useScrambleRoles(roles, {
+  //   selector: ".role-text",
+  //   dotSelector: ".role-dot",
+  //   hold: 1500,
+  // });
+  // useTextAnimation({
+  //   selectors: ".ans",
+  //   effect: "fadeInLeft",
+  //   order: "first",
+  //   dur: 800,
+  //   staggerDelay: 50,
+  // });
+  // useTextAnimation({
+  //   selectors: "#ket",
+  //   effect: "fadeInUp",
+  //   order: "random",
+  //   dur: 200,
+  //   staggerDelay: 6,
+  //   waitUntil: 1800,
+  // });
+  // useEffect(() => {
+  //   anim();
+  //   setTimeout(() => {
+  //     document.querySelector(".fade")?.classList.add("opacity-100");
+  //   }, 3000);
+  //   setTimeout(() => {
+  //     document.querySelector(".shape-container")?.classList.add("opacity-100");
+  //   }, 4000);
+  // }, []);
 
   return (
     <>
@@ -144,6 +144,15 @@ function App() {
             </p>
           </div>
         </div>
+                <div className="p-2 sticky flex gap-2 bottom-10 left-1/2 -translate-x-1/2 bg-neutral-900 rounded-lg w-fit">
+          <p className="bg-neutral-800 cursor-pointer p-2 rounded-md hover:bg-neutral-900 transition-colors duration-300">
+            Left
+          </p>
+          <p className="bg-neutral-800 cursor-pointer p-2 rounded-md hover:bg-neutral-900 transition-colors duration-300">
+            Right
+          </p>
+        </div>
+
       </div>
     </>
   );
