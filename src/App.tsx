@@ -7,6 +7,7 @@ import NavBar from "./component/navbar";
 import Btn from "./component/button";
 import Card from "./component/card";
 import Input from "./component/input";
+import Footer from "./component/footer";
 
 function App() {
   const viewportWidth = window.innerWidth;
@@ -40,35 +41,35 @@ function App() {
   }
 
   // Runing animation
-  // useScrambleRoles(roles, {
-  //   selector: ".role-text",
-  //   dotSelector: ".role-dot",
-  //   hold: 1500,
-  // });
-  // useTextAnimation({
-  //   selectors: ".ans",
-  //   effect: "fadeInLeft",
-  //   order: "first",
-  //   dur: 800,
-  //   staggerDelay: 50,
-  // });
-  // useTextAnimation({
-  //   selectors: "#ket",
-  //   effect: "fadeInUp",
-  //   order: "random",
-  //   dur: 200,
-  //   staggerDelay: 6,
-  //   waitUntil: 1800,
-  // });
-  // useEffect(() => {
-  //   anim();
-  //   setTimeout(() => {
-  //     document.querySelector(".fade")?.classList.add("opacity-100");
-  //   }, 3000);
-  //   setTimeout(() => {
-  //     document.querySelector(".shape-container")?.classList.add("opacity-100");
-  //   }, 4000);
-  // }, []);
+  useScrambleRoles(roles, {
+    selector: ".role-text",
+    dotSelector: ".role-dot",
+    hold: 1500,
+  });
+  useTextAnimation({
+    selectors: ".ans",
+    effect: "fadeInLeft",
+    order: "first",
+    dur: 800,
+    staggerDelay: 50,
+  });
+  useTextAnimation({
+    selectors: "#ket",
+    effect: "fadeInUp",
+    order: "random",
+    dur: 200,
+    staggerDelay: 6,
+    waitUntil: 1800,
+  });
+  useEffect(() => {
+    anim();
+    setTimeout(() => {
+      document.querySelector(".fade")?.classList.add("opacity-100");
+    }, 3000);
+    setTimeout(() => {
+      document.querySelector(".shape-container")?.classList.add("opacity-100");
+    }, 4000);
+  }, []);
 
   return (
     <>
@@ -94,7 +95,7 @@ function App() {
               optimal work. I'm always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
-            <div className="fade transition-opacity duration-1000 opacity-0">
+            <div className="fade mt-4 transition-opacity duration-1000 opacity-0">
               <Btn>
                 <p>My Project</p>
               </Btn>
@@ -125,13 +126,15 @@ function App() {
         </div>
       </div>
       <div className="flex justify-center min-w-6xl items-center min-h-screen">
-        <form className="flex flex-col gap-2">
+        <form className="flex flex-col gap-4">
           <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
           <Input text="Name" type="text" />
           <Input text="Email" type="email" />
-          <textarea className="border border-primary p-2 rounded-md bg-neutral-900" placeholder="Email" />
+          <Input textarea text="Message" type="text" />
+          <Btn>Submit</Btn>
         </form>
       </div>
+      <Footer />
     </>
   );
 }
