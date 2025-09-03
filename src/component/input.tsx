@@ -1,26 +1,30 @@
 type InputProps = {
   text: string;
+  value: string;
   type?: string;
   textarea?: boolean;
+  onChange: (val: string) => void;
 };
 
-export default function Input({ text, type="text", textarea=false }: InputProps) {
+export default function Input({ text, type="text", textarea=false , onChange}: InputProps) {
   return (
     <div className="w-full relative flex rounded-xl">
       {textarea ? (
         <textarea
           placeholder=" "
           required
-          className="peer w-2xl min-h-24 bg-transparent outline-none px-4 py-2 text-base rounded-xl border border-primary focus:shadow-md"
+          className="peer w-2xl min-h-24 bg-transparent outline-none px-4 py-2 text-base rounded-lg border border-primary focus:shadow-md"
           id="address"
-        />
-      ) : (
-      <input
+          onChange={(e) => onChange(e.target.value)}
+          />
+        ) : (
+          <input
         placeholder=" "
         required
-        className="peer w-2xl h-12 bg-transparent outline-none px-4 text-base rounded-xl border border-primary focus:shadow-md"
+        className="peer w-2xl h-12 bg-transparent outline-none px-4 text-base rounded-lg border border-primary focus:shadow-md"
         id="address"
         type={type}
+        onChange={(e) => onChange(e.target.value)}
       />
       )}
       <label
