@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { animate, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
 import { useScrambleRoles } from "./hooks/useScrambleRoles";
@@ -10,6 +10,9 @@ import Input from "./component/input";
 import Footer from "./component/footer";
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [nama, setNama] = useState("");  
+  const [message, setMessage] = useState("");  
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
@@ -128,10 +131,26 @@ function App() {
       <div className="flex justify-center min-w-6xl items-center min-h-screen">
         <form className="flex flex-col gap-4">
           <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
-          <Input text="Name" type="text" />
-          <Input text="Email" type="email" />
-          <Input textarea text="Message" type="text" />
-          <Btn>Submit</Btn>
+          <Input
+            text="Name"
+            type="text"
+            value={nama}
+            onChange={setNama}
+          />
+          <Input
+            text="Email"
+            type="email"
+            value={email}
+            onChange={setEmail}
+          />
+          <Input
+            textarea
+            text="Message"
+            type="text"
+            value={message}
+            onChange={setMessage}
+          />
+          <Btn onClick={() => console.log({nama, email, message})}>Submit</Btn>
         </form>
       </div>
       <Footer />
