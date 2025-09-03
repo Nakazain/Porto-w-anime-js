@@ -11,8 +11,8 @@ import Footer from "./component/footer";
 
 function App() {
   const [email, setEmail] = useState("");
-  const [nama, setNama] = useState("");  
-  const [message, setMessage] = useState("");  
+  const [nama, setNama] = useState("");
+  const [message, setMessage] = useState("");
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
@@ -64,6 +64,41 @@ function App() {
     staggerDelay: 6,
     waitUntil: 1800,
   });
+
+  async function submit(nama: string, email: string, message: string, button: HTMLButtonElement) {
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = "Sending...";
+
+    const data = {
+      name: nama,
+      email: email,
+      message: message,
+    };
+
+    try {
+      const API_ENDPOINT = "/api/telegram";
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      alert(result.success ? "Pesan terkirim!" : "Gagal mengirim pesan.");
+      if (result.success) {
+        setNama("");
+        setEmail("");
+        setMessage("");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Terjadi kesalahan saat mengirim pesan.");
+    } finally {
+      button.textContent = originalText;
+      button.disabled = false;
+    }
+  }
   useEffect(() => {
     anim();
     setTimeout(() => {
@@ -131,18 +166,8 @@ function App() {
       <div className="flex justify-center min-w-6xl items-center min-h-screen">
         <form className="flex flex-col gap-4">
           <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
-          <Input
-            text="Name"
-            type="text"
-            value={nama}
-            onChange={setNama}
-          />
-          <Input
-            text="Email"
-            type="email"
-            value={email}
-            onChange={setEmail}
-          />
+          <Input text="Name" type="text" value={nama} onChange={setNama} />
+          <Input text="Email" type="email" value={email} onChange={setEmail} />
           <Input
             textarea
             text="Message"
@@ -150,7 +175,11 @@ function App() {
             value={message}
             onChange={setMessage}
           />
-          <Btn onClick={() => console.log({nama, email, message})}>Submit</Btn>
+          <Btn onClick={(e) => {
+            e.preventDefault();
+            const button = e.currentTarget;
+            submit(nama, email, message, button);
+          }}>Submit</Btn>
         </form>
       </div>
       <Footer />
