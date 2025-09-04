@@ -71,9 +71,9 @@ function App() {
     button.textContent = "Sending...";
 
     const data = {
-      name: nama,
-      email: email,
-      message: message,
+      Nama: nama,
+      Email: email,
+      Pesan: message,
     };
 
     try {
@@ -85,8 +85,8 @@ function App() {
       });
 
       const result = await response.json();
-      alert(result.success ? "Pesan terkirim!" : "Gagal mengirim pesan.");
-      if (result.success) {
+      alert(result.ok ? "Pesan terkirim!" : "Gagal mengirim pesan.");
+      if (result.ok) {
         setNama("");
         setEmail("");
         setMessage("");
