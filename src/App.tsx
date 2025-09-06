@@ -65,7 +65,12 @@ function App() {
     waitUntil: 1800,
   });
 
-  async function submit(nama: string, email: string, message: string, button: HTMLButtonElement) {
+  async function submit(
+    nama: string,
+    email: string,
+    message: string,
+    button: HTMLButtonElement
+  ) {
     const originalText = button.textContent;
     button.disabled = true;
     button.textContent = "Sending...";
@@ -86,11 +91,6 @@ function App() {
 
       const result = await response.json();
       alert(result.ok ? "Pesan terkirim!" : "Gagal mengirim pesan.");
-      if (result.ok) {
-        setNama("");
-        setEmail("");
-        setMessage("");
-      }
     } catch (error) {
       console.error("Error:", error);
       alert("Terjadi kesalahan saat mengirim pesan.");
@@ -168,18 +168,16 @@ function App() {
           <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
           <Input text="Name" type="text" value={nama} onChange={setNama} />
           <Input text="Email" type="email" value={email} onChange={setEmail} />
-          <Input
-            textarea
-            text="Message"
-            type="text"
-            value={message}
-            onChange={setMessage}
-          />
-          <Btn onClick={(e) => {
-            e.preventDefault();
-            const button = e.currentTarget;
-            submit(nama, email, message, button);
-          }}>Submit</Btn>
+          <Input textarea text="Message" type="text" value={message} onChange={setMessage} />
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              const button = e.currentTarget;
+              submit(nama, email, message, button);
+            }}
+          >
+            Submit
+          </Btn>
         </form>
       </div>
       <Footer />
