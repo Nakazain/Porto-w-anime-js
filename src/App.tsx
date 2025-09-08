@@ -8,7 +8,7 @@ import Btn from "./component/button";
 import Card from "./component/card";
 import Input from "./component/input";
 import Footer from "./component/footer";
-import Loader from "./component/loading";
+import Loader from "./component/loader";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -72,9 +72,11 @@ function App() {
     message: string,
     button: HTMLButtonElement
   ) {
-    const originalText = button.textContent;
+    const loader = document.querySelector(".loader");
+    const formCont = document.querySelector(".form-cont");
     button.disabled = true;
-    button.textContent = "Sending...";
+    formCont?.classList.add("hidden");
+    loader?.classList.remove("hidden");
 
     const data = {
       name: nama,
@@ -96,7 +98,8 @@ function App() {
       console.error("Error:", error);
       alert("Terjadi kesalahan saat mengirim pesan.");
     } finally {
-      button.textContent = originalText;
+      formCont?.classList.remove("hidden");
+      loader?.classList.add("hidden");
       button.disabled = false;
     }
   }
@@ -165,21 +168,36 @@ function App() {
         </div>
       </div>
       <div className="flex justify-center min-w-6xl items-center min-h-screen">
-        <form className="flex flex-col gap-4">
-          <Loader />
-          <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
-          <Input text="Name" type="text" value={nama} onChange={setNama} />
-          <Input text="Email" type="email" value={email} onChange={setEmail} />
-          <Input textarea text="Message" type="text" value={message} onChange={setMessage} />
-          <Btn
-            onClick={(e) => {
-              e.preventDefault();
-              const button = e.currentTarget;
-              submit(nama, email, message, button);
-            }}
-          >
-            Submit
-          </Btn>
+        <form>
+          <div className="loader hidden">
+            <Loader />
+          </div>
+          <div className="form-cont flex flex-col gap-4">
+            <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
+            <Input text="Name" type="text" value={nama} onChange={setNama} />
+            <Input
+              text="Email"
+              type="email"
+              value={email}
+              onChange={setEmail}
+            />
+            <Input
+              textarea
+              text="Message"
+              type="text"
+              value={message}
+              onChange={setMessage}
+            />
+            <Btn
+              onClick={(e) => {
+                e.preventDefault();
+                const button = e.currentTarget;
+                submit(nama, email, message, button);
+              }}
+            >
+              Submit
+            </Btn>
+          </div>
         </form>
       </div>
       <Footer />
