@@ -9,10 +9,12 @@ import Card from "./component/card";
 import Input from "./component/input";
 import Footer from "./component/footer";
 import Loader from "./component/loader";
+import { useToast } from "./context/ToastProvider";
 
 function App() {
   const [email, setEmail] = useState("");
   const [nama, setNama] = useState("");
+  const { showToast } = useToast();
   const [message, setMessage] = useState("");
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
@@ -93,10 +95,14 @@ function App() {
       });
 
       const result = await response.json();
-      alert(result.ok ? "Pesan terkirim!" : "Gagal mengirim pesan.");
+      if (result.ok) {
+        showToast("Pesan berhasil terkirim!", 'success');
+      } else {
+        showToast("Gagal mengirim pesan", "error")
+      }
     } catch (error) {
       console.error("Error:", error);
-      alert("Terjadi kesalahan saat mengirim pesan.");
+      showToast("Terjadi kesalahan saat mengirim pesan.", "error")
     } finally {
       formCont?.classList.remove("hidden");
       loader?.classList.add("hidden");

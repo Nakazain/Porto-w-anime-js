@@ -1,6 +1,6 @@
 import '../index.css';
 
-const Loader = () => {
+export default function Loader() {
   return (
     <div className="styled-wrapper">
       <div className="loader-wrapper">
@@ -16,4 +16,3 @@ const Loader = () => {
     </div>
   );
 };
-export default Loader;
