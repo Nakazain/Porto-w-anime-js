@@ -23,7 +23,7 @@ const Toaster: React.FC<ToastProps> = ({ message, type, onClose }) => {
     if (toastRef.current) {
       animate(toastRef.current, {
         opacity: [0, 1],
-        translateX: ['100%', '0%'],
+        x: ['100%', '0%'],
         duration: 500,
         easing: 'easeOutExpo',
       });
@@ -40,7 +40,7 @@ const Toaster: React.FC<ToastProps> = ({ message, type, onClose }) => {
     if (toastRef.current) {
       animate(toastRef.current, {
         opacity: [1, 0],
-        translateX: ['0%', '100%'],
+        x: ['0%', '100%'],
         duration: 500,
         easing: 'easeInExpo',
         complete: onClose, 
