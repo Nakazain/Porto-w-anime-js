@@ -76,9 +76,9 @@ function App() {
     button.textContent = "Sending...";
 
     const data = {
-      Nama: nama,
-      Email: email,
-      Pesan: message,
+      name: nama,
+      email: email,
+      message: message,
     };
 
     try {
