@@ -8,6 +8,7 @@ import Btn from "./component/button";
 import Card from "./component/card";
 import Input from "./component/input";
 import Footer from "./component/footer";
+import Loader from "./component/loading";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -165,6 +166,7 @@ function App() {
       </div>
       <div className="flex justify-center min-w-6xl items-center min-h-screen">
         <form className="flex flex-col gap-4">
+          <Loader />
           <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
           <Input text="Name" type="text" value={nama} onChange={setNama} />
           <Input text="Email" type="email" value={email} onChange={setEmail} />
