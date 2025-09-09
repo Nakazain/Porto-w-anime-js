@@ -37,6 +37,7 @@ export function useScrambleRoles(
       });
     });
   }
+  let loopcount:number = 0;
 
   useLayoutEffect(() => {
     // Prevent multiple inits
@@ -105,6 +106,8 @@ export function useScrambleRoles(
         });
 
         idx = (idx + 1) % roles.length;
+        console.log(`loop ${loopcount}`);
+        loopcount++
       }
     }
 

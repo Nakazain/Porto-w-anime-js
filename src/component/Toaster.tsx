@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { animate } from 'animejs';
+import { waapi } from 'animejs';
 
 interface ToastProps {
   message: string;
@@ -21,11 +21,11 @@ const Toaster: React.FC<ToastProps> = ({ message, type, onClose }) => {
 
   useEffect(() => {
     if (toastRef.current) {
-      animate(toastRef.current, {
+      waapi.animate(toastRef.current, {
         opacity: [0, 1],
         x: ['100%', '0%'],
-        duration: 500,
-        easing: 'easeOutExpo',
+        duration: 300,
+        easing: 'ease-in-out',
       });
 
       const timer = setTimeout(() => {
@@ -38,13 +38,13 @@ const Toaster: React.FC<ToastProps> = ({ message, type, onClose }) => {
 
   const handleClose = () => {
     if (toastRef.current) {
-      animate(toastRef.current, {
+      waapi.animate(toastRef.current, {
         opacity: [1, 0],
         x: ['0%', '100%'],
-        duration: 500,
-        easing: 'easeInExpo',
-        complete: onClose, 
+        duration: 300,
+        easing: 'ease-in-out',
       });
+      setTimeout(onClose, 350);
     }
   };
 
