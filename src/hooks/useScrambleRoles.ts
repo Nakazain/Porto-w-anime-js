@@ -44,7 +44,7 @@ export function useScrambleRoles(
     if (started.current) return;
     started.current = true;
     mounted.current = true;
-
+    
     let idx = 0;
 
     async function loop() {
@@ -85,7 +85,7 @@ export function useScrambleRoles(
 
         // Hold
         await new Promise((r) => setTimeout(r, hold));
-
+        
         // Animate dot again
         if (dotSelector) {
           animate(dotSelector, {
@@ -104,7 +104,7 @@ export function useScrambleRoles(
           duration: outDur,
           delay: stagger(20, { from: "last", ease: "in(3)" }),
         });
-
+        
         idx = (idx + 1) % roles.length;
         console.log(`loop ${loopcount}`);
         loopcount++
@@ -115,6 +115,7 @@ export function useScrambleRoles(
 
     return () => {
       mounted.current = false;
+      started.current = false;
     };
   }, [roles, selector, dotSelector, hold, inDur, outDur]);
 }
