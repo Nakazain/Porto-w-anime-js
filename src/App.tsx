@@ -147,6 +147,8 @@ function App() {
               <Btn>
                 <p>My Project</p>
               </Btn>
+              <Btn onClick={ () => showToast("Pesan berhasil terkirim!", 'success')}>Toaster tes</Btn>
+              <Btn onClick={ () => showToast("Hahhhhhhhhhhhhhhhh!", 'error')}>Toaster tes</Btn>
             </div>
           </div>
           <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
