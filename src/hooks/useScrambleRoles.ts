@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
-import { animate, stagger, utils } from "animejs";
+import { utils, stagger, createTimeline } from "animejs";
 import { wrapWords } from "./useWrapWords";
 
 type UseScrambleRolesOpts = {
@@ -24,98 +24,92 @@ export function useScrambleRoles(
 
   const mounted = useRef(true);
   const started = useRef(false);
-
-  // helper promisify animate -> resolve onComplete
-  function animatePromise(targets: any, params: any) {
-    return new Promise<void>((resolve) => {
-      animate(targets, {
-        ...params,
-        onComplete() {
-          if (typeof params.onComplete === "function") params.onComplete();
-          resolve();
-        },
-      });
-    });
-  }
-  let loopcount:number = 0;
+  const roleIndex = useRef(0);
+  const timelineRef = useRef<any>(null);
 
   useLayoutEffect(() => {
-    // Prevent multiple inits
     if (started.current) return;
     started.current = true;
     mounted.current = true;
-    
-    let idx = 0;
 
-    async function loop() {
-      const el = (utils.$(selector)[0] || null) as HTMLElement | null;
-      if (!el) return;
+    let loopCount = 0;
+    function playScramble() {
+      if (!mounted.current) return;
 
-      while (mounted.current) {
-        el.textContent = roles[idx];
-        wrapWords(el, "word", "char");
-        const chars = Array.from(el.querySelectorAll<HTMLElement>(".char"));
+      const [$el] = utils.$(selector) as HTMLElement[];
+      if (!$el) return;
 
-        // If no chars, skip to next
-        if (!chars.length) {
-          await new Promise((r) => setTimeout(r, hold));
-          idx = (idx + 1) % roles.length;
-          continue;
-        }
+      // pasang text dan wrap
+      $el.innerHTML = roles[roleIndex.current];
+      wrapWords($el, "word", "char");
+      const chars = $el.querySelectorAll(".char");
 
-        // Animate dot if exists
-        if (dotSelector) {
-          animate(dotSelector, {
-            x: [-el.offsetWidth, 0],
-            scaleX: [10, 1],
-            transformOrigin: ["0% 0%", "0% 0%"],
-            easing: "out(3)",
-            duration: chars.length * 25 + 75,
-          });
-        }
+      // kalau kosong, skip aja ke berikutnya
+      if (!chars.length) {
+        roleIndex.current = (roleIndex.current + 1) % roles.length;
+        setTimeout(playScramble, hold);
+        return;
+      }
 
-        // Animate chars in
-        await animatePromise(chars, {
+      const tl = createTimeline({
+        delay: 0,
+        autoplay: true,
+        onComplete: () => {
+          if (!mounted.current) return;
+          roleIndex.current = (roleIndex.current + 1) % roles.length;
+          playScramble();
+          console.log("loop " + loopCount)
+          loopCount++
+          console.log(chars)
+        },
+      })
+      .add(chars,
+        {
           opacity: [0, 1],
           scaleX: [0, 1],
           x: [10, 0],
           duration: inDur,
           delay: stagger(25, { from: "first", ease: "in(3)", start: 100 }),
-        });
-
-        // Hold
-        await new Promise((r) => setTimeout(r, hold));
-        
-        // Animate dot again
-        if (dotSelector) {
-          animate(dotSelector, {
-            x: -el.offsetWidth,
-            scaleX: [4, 1],
-            transformOrigin: ["100% 0%", "100% 0%"],
+        },
+        0
+      )
+        .add(dotSelector, 
+          {
+            x: [-$el.offsetWidth, 0],
+            scaleX: [10, 1],
+            transformOrigin: ["0% 0%", "0% 0%"],
             easing: "out(3)",
-            duration: chars.length * 25 + 100,
-          });
-        }
-
-        // Animate chars out
-        await animatePromise(chars, {
-          opacity: [1, 0],
-          scaleX: [1, 0],
-          duration: outDur,
-          delay: stagger(20, { from: "last", ease: "in(3)" }),
+            duration: chars.length * 25 + 75,
+          },
+          0
+        )
+      .add({ duration: hold })
+      .add(chars, {
+        opacity: [1, 0],
+        scaleX: [1, 0],
+        duration: outDur,
+        delay: stagger(20, { from: "last", ease: "in(3)" }),
+      })
+        .add(dotSelector, {
+          x: -$el.offsetWidth,
+          scaleX: [4, 1],
+          transformOrigin: ["100% 0%", "100% 0%"],
+          easing: "out(3)",
+          duration: chars.length * 25 + 100,
         });
-        
-        idx = (idx + 1) % roles.length;
-        console.log(`loop ${loopcount}`);
-        loopcount++
       }
-    }
 
-    loop();
+    // mulai pertama kali
+    playScramble();
 
     return () => {
       mounted.current = false;
-      started.current = false;
+      if (timelineRef.current) {
+        try {
+          timelineRef.current.pause();
+        } catch {}
+        timelineRef.current = null;
+      }
     };
   }, [roles, selector, dotSelector, hold, inDur, outDur]);
 }
