@@ -39,12 +39,10 @@ export function useScrambleRoles(
       const [$el] = utils.$(selector) as HTMLElement[];
       if (!$el) return;
 
-      // pasang text dan wrap
       $el.innerHTML = roles[roleIndex.current];
       wrapWords($el, "word", "char");
       const chars = $el.querySelectorAll(".char");
 
-      // kalau kosong, skip aja ke berikutnya
       if (!chars.length) {
         roleIndex.current = (roleIndex.current + 1) % roles.length;
         setTimeout(playScramble, hold);
