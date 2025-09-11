@@ -25,7 +25,6 @@ export function useScrambleRoles(
   const mounted = useRef(true);
   const started = useRef(false);
   const roleIndex = useRef(0);
-  const timelineRef = useRef<any>(null);
 
   useLayoutEffect(() => {
     if (started.current) return;
@@ -97,7 +96,6 @@ export function useScrambleRoles(
         });
       }
 
-    // mulai pertama kali
     playScramble();
 
     return () => {
