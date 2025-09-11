@@ -102,12 +102,7 @@ export function useScrambleRoles(
 
     return () => {
       mounted.current = false;
-      if (timelineRef.current) {
-        try {
-          timelineRef.current.pause();
-        } catch {}
-        timelineRef.current = null;
-      }
+      started.current = false;
     };
   }, [roles, selector, dotSelector, hold, inDur, outDur]);
 }
