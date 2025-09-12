@@ -32,17 +32,15 @@ export function useScrambleRoles(
     started.current = true;
     mounted.current = true;
 
-    let idx = 0;
+    const el = (utils.$(selector)[0]) as HTMLElement;
     let elIndex: number = 0;
+
     function playScramble() {
       if (!mounted.current) return;
-      const el = (utils.$(selector)[0]) as HTMLElement;
-      if (!el) return;
 
-      el.textContent = roles[idx];
+      el.innerHTML = roles[elIndex];
       wrapWords(el, "word", "char");
       const chars = Array.from(el.querySelectorAll<HTMLElement>(".char"));
-
 
       if (!chars.length) {
         roleIndex.current = (roleIndex.current + 1) % roles.length;
