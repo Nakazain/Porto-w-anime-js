@@ -41,7 +41,7 @@ export function useScrambleRoles(
       $el.innerHTML = roles[roleIndex.current];
       wrapWords($el, "word", "char");
       const chars = $el.querySelectorAll(".char");
-
+      
       if (!chars.length) {
         roleIndex.current = (roleIndex.current + 1) % roles.length;
         setTimeout(playScramble, hold);
@@ -51,17 +51,18 @@ export function useScrambleRoles(
       const tl = createTimeline({
         delay: 0,
         onComplete: () => {
-        const [$el2] = utils.$(selector) as HTMLElement[];
+          const [$el2] = utils.$(selector) as HTMLElement[];
           $el2.innerHTML = $el[elIndex++];
           if (elIndex > $el.length - 1) {
             elIndex = 0; }
-          wrapWords($el2, "word", "char");
+            wrapWords($el2, "word", "char");
+            const chars = $el.querySelectorAll(".char");
           scrambleTL = createTimeline({
             onComplete: () => {
               playScramble();
             }
           })
-          .add(chars,
+          .add($el2.querySelectorAll(".char"),
             {
               opacity: [0, 1],
               scaleX: [0, 1],
@@ -88,14 +89,14 @@ export function useScrambleRoles(
         scaleX: [1, 0],
         duration: outDur,
         delay: stagger(20, { from: "last", ease: "in(3)" }),
-      })
+      },0)
         .add(dotSelector, {
           x: -$el.offsetWidth,
           scaleX: [4, 1],
           transformOrigin: ["100% 0%", "100% 0%"],
           easing: "out(3)",
           duration: chars.length * 25 + 100,
-        });
+        },0).init();
       }
 
     playScramble();
