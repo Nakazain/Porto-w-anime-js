@@ -31,13 +31,13 @@ export function useScrambleRoles(
     started.current = true;
     mounted.current = true;
 
-    let loopCount = 0;
+    let loopCount:number = 0;
+    let elIndex:number = 0;
     function playScramble() {
       if (!mounted.current) return;
-
       const [$el] = utils.$(selector) as HTMLElement[];
       if (!$el) return;
-
+      
       $el.innerHTML = roles[roleIndex.current];
       wrapWords($el, "word", "char");
       const chars = $el.querySelectorAll(".char");
@@ -50,37 +50,39 @@ export function useScrambleRoles(
 
       const tl = createTimeline({
         delay: 0,
-        autoplay: true,
         onComplete: () => {
-          if (!mounted.current) return;
-          roleIndex.current = (roleIndex.current + 1) % roles.length;
-          playScramble();
-          console.log("loop " + loopCount)
-          loopCount++
-          console.log(chars)
-        },
-      })
-      .add(chars,
-        {
-          opacity: [0, 1],
-          scaleX: [0, 1],
-          x: [10, 0],
-          duration: inDur,
-          delay: stagger(25, { from: "first", ease: "in(3)", start: 100 }),
-        },
-        0
-      )
-        .add(dotSelector, 
-          {
-            x: [-$el.offsetWidth, 0],
-            scaleX: [10, 1],
-            transformOrigin: ["0% 0%", "0% 0%"],
-            easing: "out(3)",
-            duration: chars.length * 25 + 75,
-          },
-          0
-        )
-      .add({ duration: hold })
+        const [$el2] = utils.$(selector) as HTMLElement[];
+          $el2.innerHTML = $el[elIndex++];
+          if (elIndex > $el.length - 1) {
+            elIndex = 0; }
+          wrapWords($el2, "word", "char");
+          scrambleTL = createTimeline({
+            onComplete: () => {
+              playScramble();
+            }
+          })
+          .add(chars,
+            {
+              opacity: [0, 1],
+              scaleX: [0, 1],
+              x: [10, 0],
+              duration: inDur,
+              delay: stagger(25, { from: "first", ease: "in(3)", start: 100 }),
+            },
+            0
+          )
+          .add(dotSelector, 
+            {
+              x: [-$el2.offsetWidth, 0],
+              scaleX: [10, 1],
+              transformOrigin: ["0% 0%", "0% 0%"],
+              easing: "out(3)",
+              duration: chars.length * 25 + 75,
+            },
+            0
+          )
+          .add({ duration: hold }).init();}
+    })
       .add(chars, {
         opacity: [1, 0],
         scaleX: [1, 0],
