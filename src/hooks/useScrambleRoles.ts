@@ -63,7 +63,7 @@ export function useScrambleRoles(
             },
           });
             scrambleTL.add(
-              el2.querySelectorAll(".char"),
+              chars,
               {
                 opacity: [0, 1],
                 scaleX: [0, 1],
