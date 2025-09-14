@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { animate, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
-import { useScrambleRoles } from "./hooks/useScrambleRoles";
+// import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
 import NavBar from "./component/navbar";
 import Btn from "./component/button";
@@ -10,6 +10,8 @@ import Input from "./component/input";
 import Footer from "./component/footer";
 import Loader from "./component/loader";
 import { useToast } from "./context/ToastProvider";
+import Sramble from "./component/scramble";
+import Scramble from "./component/scramble";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -18,14 +20,6 @@ function App() {
   const [message, setMessage] = useState("");
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
-
-  const roles = [
-    "Gamer",
-    "Web Developer",
-    "Graphics Designer",
-    "Math Enthusiast",
-    "Anime Lover",
-  ];
 
   // Animating shape
   function anim() {
@@ -47,11 +41,11 @@ function App() {
   }
 
   // Runing animation
-  useScrambleRoles(roles, {
-    selector: ".role-text",
-    dotSelector: ".role-dot",
-    hold: 1500,
-  });
+  // useScrambleRoles(roles, {
+  //   selector: ".role-text",
+  //   dotSelector: ".role-dot",
+  //   hold: 1500,
+  // });
   useTextAnimation({
     selectors: ".ans",
     effect: "fadeInLeft",
@@ -130,10 +124,7 @@ function App() {
                 Hi 👋 I'm Zen
               </h1>
               <h2 className="mt-4 text-4xl font-bold text-gray-200">
-                I'm a <span className="role-text">Web Developer</span>
-                <span className="inline-flex items-center">
-                  <span className="role-dot text-primary">.</span>
-                </span>
+                I'm a <Scramble />
               </h2>
             </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
