@@ -50,6 +50,7 @@ useLayoutEffect(() => {
         el.textContent = roles[idx];
         wrapWords(el, "word", "char");
         const chars = Array.from(el.querySelectorAll<HTMLElement>(".char"));
+        console.log("chars found:", chars.length);
 
         // If no chars, skip to next
         if (!chars.length) {
@@ -57,7 +58,7 @@ useLayoutEffect(() => {
           idx = (idx + 1) % roles.length;
           continue;
         }
-
+        
         // Animate dot if exists
         if (dotSelector) {
           animate(dotSelector, {
@@ -68,7 +69,7 @@ useLayoutEffect(() => {
             duration: chars.length * 25 + 75,
           });
         }
-
+        
         // Animate chars in
         await animatePromise(chars, {
           opacity: [0, 1],
@@ -77,7 +78,7 @@ useLayoutEffect(() => {
           duration: inDur,
           delay: stagger(25, { from: "first", ease: "in(3)", start: 100 }),
         });
-
+        
         // Hold
         await new Promise((r) => setTimeout(r, hold));
         
@@ -89,9 +90,10 @@ useLayoutEffect(() => {
             transformOrigin: ["100% 0%", "100% 0%"],
             easing: "out(3)",
             duration: chars.length * 25 + 100,
+            onComplete: ()=> {console.log("Kenapa gak jalan sih astaga, pening gw jing");}
           });
         }
-
+        
         // Animate chars out
         await animatePromise(chars, {
           opacity: [1, 0],
@@ -107,14 +109,12 @@ useLayoutEffect(() => {
     loop();
 
     return () => {
-      mounted.current = false; // stop loop saat unmount
-      started.current = false;
+      mounted.current = false;
     };
   }, []);
 
-  // 👉 ini return JSX untuk UI
   return (
-    <div className="flex items-center space-x-1">
+    <div className="block">
       <span className="role-text">Web Developer</span>
       <span className="inline-flex items-center">
         <span className="role-dot text-primary">.</span>
