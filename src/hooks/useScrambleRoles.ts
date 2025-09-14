@@ -32,17 +32,14 @@ export function useScrambleRoles(
     mounted.current = true;
 
     let elIndex: number = 0;
-    let eikon:number = 0;
     
     const el = utils.$(selector)[0] as HTMLElement;
     function playScramble() {
       if (!mounted.current) return;
       
-      if (eikon == 0) {
         el.innerHTML = roles[elIndex];
         wrapWords(el, "word", "char");
-        eikon++
-      }
+
       const chars = Array.from(el.querySelectorAll<HTMLElement>(".char"));
       
       if (!chars.length) {
@@ -54,12 +51,12 @@ export function useScrambleRoles(
       const tl = createTimeline({
         delay: 0,
         onComplete: () => {
-          const [$el2] = utils.$(selector)[0] as HTMLElement;
-          $el2.innerHTML = roles[elIndex++];
+          const el2 = utils.$(selector)[0] as HTMLElement;
+          el2.innerHTML = roles[elIndex++];
           if (elIndex > roles.length - 1) {
             elIndex = 0;
           }
-          wrapWords($el2, "word", "char");
+          wrapWords(el2, "word", "char");
           const scrambleTL = createTimeline({
             onComplete: () => {
               playScramble();
@@ -68,7 +65,7 @@ export function useScrambleRoles(
           
           scrambleTL
           .add(
-              $el2.querySelectorAll(".char"),
+              chars,
               {
                 opacity: [0, 1],
                 scaleX: [0, 1],
