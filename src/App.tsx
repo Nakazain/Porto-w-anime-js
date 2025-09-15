@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { animate, utils } from "animejs";
+import { useEffect, useState, useRef } from "react";
+import { animate, createScope, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
 // import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
@@ -13,31 +13,14 @@ import { useToast } from "./context/ToastProvider";
 import Scramble from "./component/scramble";
 
 function App() {
+  const scope = useRef<ReturnType<typeof createScope> | null>(null);
+  const root = useRef(null);
   const [email, setEmail] = useState("");
   const [nama, setNama] = useState("");
   const { showToast } = useToast();
   const [message, setMessage] = useState("");
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
-
-  // Animating shape
-  function anim() {
-    const Shape = document.querySelectorAll(".shape");
-    for (let i = 0; i < Shape.length; i++) {
-      animate(Shape[i], {
-        x: () => utils.random(-10, viewportWidth / 3),
-        y: () => utils.random(-10, viewportHeight / 1.5),
-        rotate: () => utils.random(-180, 180),
-        scale: () => utils.random(0.25, 1.5, 3),
-        duration: () => utils.random(700, 1500),
-        ease: "inOutBack",
-        loop: true,
-        onLoop(self) {
-          self.refresh();
-        },
-      });
-    }
-  }
 
   // Runing animation
   // useScrambleRoles(roles, {
@@ -103,7 +86,28 @@ function App() {
     }
   }
   useEffect(() => {
-    anim();
+    scope.current = createScope({ root }).add(() => {
+    const Shape = document.querySelectorAll(".shape");
+    for (let i = 0; i < Shape.length; i++) {
+      animate(Shape[i], {
+        x: () => utils.random(-10, viewportWidth / 3),
+        y: () => utils.random(-10, viewportHeight / 1.5),
+        rotate: () => utils.random(-180, 180),
+        scale: () => utils.random(0.25, 1.5, 3),
+        duration: () => utils.random(700, 1500),
+        ease: "inOutBack",
+        loop: true,
+        onLoop(self) {
+          self.refresh();
+        },
+      });
+    }
+    return () => {
+      if (scope.current) {
+        scope.current.revert();
+      }
+    }
+    })
     setTimeout(() => {
       document.querySelector(".fade")?.classList.add("opacity-100");
     }, 2000);
@@ -111,7 +115,7 @@ function App() {
       document.querySelector(".shape-container")?.classList.add("opacity-100");
     }, 3000);
   }, []);
-
+  
   return (
     <>
       <NavBar />
