@@ -10,7 +10,6 @@ import Input from "./component/input";
 import Footer from "./component/footer";
 import Loader from "./component/loader";
 import { useToast } from "./context/ToastProvider";
-import Sramble from "./component/scramble";
 import Scramble from "./component/scramble";
 
 function App() {

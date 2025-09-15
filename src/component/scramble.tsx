@@ -25,7 +25,7 @@ export default function Scramble() {
     return new Promise<void>((resolve) => {
       animate(targets, {
         ...params,
-        complete() {
+        onComplete() {
           if (typeof params.complete === "function") params.complete();
           resolve();
         },
@@ -90,7 +90,6 @@ useLayoutEffect(() => {
             transformOrigin: ["100% 0%", "100% 0%"],
             easing: "out(3)",
             duration: chars.length * 25 + 100,
-            onComplete: ()=> {console.log("Kenapa gak jalan sih astaga, pening gw jing");}
           });
         }
         
