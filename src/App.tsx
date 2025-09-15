@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { animate, createScope, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
-// import { useScrambleRoles } from "./hooks/useScrambleRoles";
 import Shape from "./component/shape";
 import NavBar from "./component/navbar";
 import Btn from "./component/button";
@@ -22,12 +21,6 @@ function App() {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
-  // Runing animation
-  // useScrambleRoles(roles, {
-  //   selector: ".role-text",
-  //   dotSelector: ".role-dot",
-  //   hold: 1500,
-  // });
   useTextAnimation({
     selectors: ".ans",
     effect: "fadeInLeft",
@@ -72,42 +65,43 @@ function App() {
 
       const result = await response.json();
       if (result.ok) {
-        showToast("Pesan berhasil terkirim!", 'success');
+        showToast("Pesan berhasil terkirim!", "success");
       } else {
-        showToast("Gagal mengirim pesan", "error")
+        showToast("Gagal mengirim pesan", "error");
       }
     } catch (error) {
       console.error("Error:", error);
-      showToast("Terjadi kesalahan saat mengirim pesan.", "error")
+      showToast("Terjadi kesalahan saat mengirim pesan.", "error");
     } finally {
       formCont?.classList.remove("hidden");
       loader?.classList.add("hidden");
       button.disabled = false;
     }
   }
+
   useEffect(() => {
     scope.current = createScope({ root }).add(() => {
-    const Shape = document.querySelectorAll(".shape");
-    for (let i = 0; i < Shape.length; i++) {
-      animate(Shape[i], {
-        x: () => utils.random(-10, viewportWidth / 3),
-        y: () => utils.random(-10, viewportHeight / 1.5),
-        rotate: () => utils.random(-180, 180),
-        scale: () => utils.random(0.25, 1.5, 3),
-        duration: () => utils.random(700, 1500),
-        ease: "inOutBack",
-        loop: true,
-        onLoop(self) {
-          self.refresh();
-        },
-      });
-    }
-    return () => {
-      if (scope.current) {
-        scope.current.revert();
+      const Shape = document.querySelectorAll(".shape");
+      for (let i = 0; i < Shape.length; i++) {
+        animate(Shape[i], {
+          x: () => utils.random(-10, viewportWidth / 3),
+          y: () => utils.random(-10, viewportHeight / 1.5),
+          rotate: () => utils.random(-180, 180),
+          scale: () => utils.random(0.25, 1.5, 3),
+          duration: () => utils.random(700, 1500),
+          ease: "inOutBack",
+          loop: true,
+          onLoop(self) {
+            self.refresh();
+          },
+        });
       }
-    }
-    })
+      return () => {
+        if (scope.current) {
+          scope.current.revert();
+        }
+      };
+    });
     setTimeout(() => {
       document.querySelector(".fade")?.classList.add("opacity-100");
     }, 2000);
@@ -115,7 +109,7 @@ function App() {
       document.querySelector(".shape-container")?.classList.add("opacity-100");
     }, 3000);
   }, []);
-  
+
   return (
     <>
       <NavBar />
@@ -127,7 +121,8 @@ function App() {
                 Hi 👋 I'm Zen
               </h1>
               <h2 className="mt-4 flex gap-2 text-4xl font-bold text-gray-200">
-                <span>I'm a</span><Scramble />
+                <span>I'm a</span>
+                <Scramble />
               </h2>
             </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
@@ -141,8 +136,14 @@ function App() {
               <Btn>
                 <p>My Project</p>
               </Btn>
-              <Btn onClick={ () => showToast("Pesan berhasil terkirim!", 'success')}>Toaster tes</Btn>
-              <Btn onClick={ () => showToast("Hahhhhhhhhhhhhhhhh!", 'error')}>Toaster tes</Btn>
+              <Btn
+                onClick={() => showToast("Pesan berhasil terkirim!", "success")}
+              >
+                Toaster tes
+              </Btn>
+              <Btn onClick={() => showToast("Hahhhhhhhhhhhhhhhh!", "error")}>
+                Toaster tes
+              </Btn>
             </div>
           </div>
           <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
