@@ -57,8 +57,8 @@ function App() {
     effect: "fadeInUp",
     order: "random",
     dur: 200,
-    staggerDelay: 6,
-    waitUntil: 1800,
+    staggerDelay: 4,
+    waitUntil: 1000,
   });
 
   async function submit(
@@ -106,10 +106,10 @@ function App() {
     anim();
     setTimeout(() => {
       document.querySelector(".fade")?.classList.add("opacity-100");
-    }, 3000);
+    }, 2000);
     setTimeout(() => {
       document.querySelector(".shape-container")?.classList.add("opacity-100");
-    }, 4000);
+    }, 3000);
   }, []);
 
   return (
