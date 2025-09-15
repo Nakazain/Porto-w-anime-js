@@ -75,7 +75,7 @@ const Toaster: React.FC<ToastProps> = ({ message, type, onClose }) => {
   const baseClasses =
     "flex items-center p-4 mb-4 text-white rounded-sm shadow-lg w-full max-w-xs";
   const typeClasses = {
-    success: "bg-green-500",
+    success: "bg-neutral-800",
     error: "bg-red-500",
   };
 
