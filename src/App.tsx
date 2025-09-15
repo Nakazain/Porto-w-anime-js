@@ -122,8 +122,8 @@ function App() {
               <h1 id="name" className="text-6xl font-bold text-white">
                 Hi 👋 I'm Zen
               </h1>
-              <h2 className="mt-4 text-4xl font-bold text-gray-200">
-                I'm a <Scramble />
+              <h2 className="mt-4 flex gap-2 text-4xl font-bold text-gray-200">
+                <span>I'm a</span><Scramble />
               </h2>
             </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
