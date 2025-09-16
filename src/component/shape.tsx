@@ -16,5 +16,5 @@ const shapeClasses: Record<string, string> = {
 
 export default function Shape({ type = "circle", className = "" }: ShapeProps) {
   const shapeClass = shapeClasses[type] || shapeClasses["circle"];
-  return <div className={`absolute top-14 ${shapeClass} ${className}`}></div>;
+  return <div className={`shape absolute top-14 ${shapeClass} ${className}`}></div>;
 }

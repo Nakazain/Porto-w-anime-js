@@ -114,8 +114,8 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className="flex justify-center min-h-screen mx-10">
-        <div className="flex items-center justify-center" ref={root}>
+      <div ref={root} className="flex justify-center min-h-screen mx-10">
+        <div className="flex items-center justify-center">
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
               <h1 id="name" className="text-6xl font-bold text-white">
@@ -133,7 +133,7 @@ function App() {
               optimal work. I'm always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
-            <div className="fade mt-4 transition-opacity duration-1000 opacity-0">
+            <div className="fade flex gap-2 mt-4 transition-opacity duration-1000 opacity-0">
               <Btn>
                 <p>My Project</p>
               </Btn>
@@ -148,12 +148,12 @@ function App() {
             </div>
           </div>
           <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
-            <Shape className="shape" type="circle" />
-            <Shape className="shape" type="circleOutline" />
-            <Shape className="shape" type="square" />
-            <Shape className="shape" type="squareOutline" />
-            <Shape className="shape" type="oval" />
-            <Shape className="shape" type="ovalOutline" />
+            <Shape type="circle" />
+            <Shape type="circleOutline" />
+            <Shape type="square" />
+            <Shape type="squareOutline" />
+            <Shape type="oval" />
+            <Shape type="ovalOutline" />
           </div>
         </div>
       </div>
