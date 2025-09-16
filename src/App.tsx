@@ -82,8 +82,8 @@ function App() {
   useEffect(() => {
     scope.current = createScope({ root }).add(() => {
       const Shape = document.querySelectorAll(".shape");
-      for (let i = 0; i < Shape.length; i++) {
-        animate(Shape[i], {
+      const animations = Array.from(Shape).map((s) =>
+        animate(s, {
           x: () => utils.random(-10, viewportWidth / 3),
           y: () => utils.random(-10, viewportHeight / 1.5),
           rotate: () => utils.random(-180, 180),
@@ -94,10 +94,11 @@ function App() {
           onLoop(self) {
             self.refresh();
           },
-        });
-      }
+        })
+      );
       return () => {
         if (scope.current) {
+          animations.forEach((a) => a.pause());
           scope.current.revert();
         }
       };
@@ -114,7 +115,7 @@ function App() {
     <>
       <NavBar />
       <div className="flex justify-center min-h-screen mx-10">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center" ref={root}>
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
               <h1 id="name" className="text-6xl font-bold text-white">
