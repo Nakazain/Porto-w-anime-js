@@ -96,6 +96,7 @@ function App() {
           },
         })
       );
+
       return () => {
         if (scope.current) {
           animations.forEach((a) => a.pause());
@@ -160,8 +161,10 @@ function App() {
       <div className="flex justify-center items-center min-h-screen">
         <div>
           <div className="my-6">
-            <h3 className="text-3xl text-center font-bold">My Project</h3>
-            <p className="text-xl text-center font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <h3 className="card text-3xl text-center font-bold">
+              My Project
+            </h3>
+            <p className="card text-xl text-center font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
               Several projects that I have created
             </p>
           </div>

@@ -50,7 +50,6 @@ useLayoutEffect(() => {
         el.textContent = roles[idx];
         wrapWords(el, "word", "char");
         const chars = Array.from(el.querySelectorAll<HTMLElement>(".char"));
-        console.log("chars found:", chars.length);
 
         // If no chars, skip to next
         if (!chars.length) {
