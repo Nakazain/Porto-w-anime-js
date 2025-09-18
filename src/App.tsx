@@ -21,6 +21,7 @@ function App() {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
+  // Animating
   useTextAnimation({
     selectors: ".ans",
     effect: "fadeInLeft",
@@ -37,6 +38,7 @@ function App() {
     waitUntil: 1000,
   });
 
+  // Form funtioon
   async function submit(
     nama: string,
     email: string,
@@ -78,7 +80,8 @@ function App() {
       button.disabled = false;
     }
   }
-
+  
+  // Animating
   useEffect(() => {
     scope.current = createScope({ root }).add(() => {
       const Shape = document.querySelectorAll(".shape");
