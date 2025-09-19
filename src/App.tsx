@@ -157,7 +157,7 @@ function App() {
               optimal work. I'm always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
-            <div className="fade flex gap-2 mt-4 transition-opacity duration-1000 opacity-0">
+            <div className="fade flex gap-2 mt-4 transition-opacity duration-500 opacity-0">
               <Btn>
                 <p>My Project</p>
               </Btn>
