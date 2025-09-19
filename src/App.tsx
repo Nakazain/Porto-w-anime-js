@@ -110,7 +110,7 @@ function App() {
             container: ".scroll-container",
             enter: "bottom-=7% top",
             leave: "top+=75% bottom",
-            sync: 0.25,
+            sync: 0.5,
             debug: true,
           }),
         })
