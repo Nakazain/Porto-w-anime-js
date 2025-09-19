@@ -85,8 +85,8 @@ function App() {
   useEffect(() => {
     scope.current = createScope({ root }).add(() => {
       const Shape = document.querySelectorAll(".shape");
-      const animations = Array.from(Shape).map((s) =>
-        animate(s, {
+      const animations = Array.from(Shape).map((e) =>
+        animate(e, {
           x: () => utils.random(-10, viewportWidth / 3),
           y: () => utils.random(-10, viewportHeight / 1.5),
           rotate: () => utils.random(-180, 180),
@@ -100,8 +100,8 @@ function App() {
         })
       );
 
-      const prjk = document.querySelectorAll(".fade-up");
-      const cardScroll = Array.from(prjk).map((e) =>
+      const fadeUp = document.querySelectorAll(".fade-up");
+      const fadeUpScroll = Array.from(fadeUp).map((e) =>
         animate(e, {
           opacity: 1,
           translate: "0 0px",
@@ -115,11 +115,27 @@ function App() {
           }),
         })
       );
+      
+      const card = document.querySelectorAll('.card');
+      const cardScroll = Array.from(card).map((e)=>
+        animate(e, {
+          opacity: 1,
+          translate: "0px",
+          duration:500,
+          autoplay: onScroll({
+            container: ".scroll-container",
+            enter: "bottom-=7% 0",
+            leave: "top+=75% 205%",
+            debug: true,
+          }),
+        })
+      );
 
       return () => {
         if (scope.current) {
           animations.forEach((a) => a.pause());
           cardScroll.forEach((a) => a.pause());
+          fadeUpScroll.forEach((a) => a.pause());
           scope.current.revert();
         }
       };
