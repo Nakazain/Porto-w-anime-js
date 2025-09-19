@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { animate, createScope, utils } from "animejs";
+import { animate, createScope, onScroll, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
 import Shape from "./component/shape";
 import NavBar from "./component/navbar";
@@ -80,7 +80,7 @@ function App() {
       button.disabled = false;
     }
   }
-  
+
   // Animating
   useEffect(() => {
     scope.current = createScope({ root }).add(() => {
@@ -100,9 +100,26 @@ function App() {
         })
       );
 
+      const prjk = document.querySelectorAll(".fade-up");
+      const cardScroll = Array.from(prjk).map((e) =>
+        animate(e, {
+          opacity: 1,
+          translate: "0 0px",
+          ease: 'inOutCubic',
+          autoplay: onScroll({
+            container: ".scroll-container",
+            enter: "bottom-=7% top",
+            leave: "top+=75% bottom",
+            sync: 0.25,
+            debug: true,
+          }),
+        })
+      );
+
       return () => {
         if (scope.current) {
           animations.forEach((a) => a.pause());
+          cardScroll.forEach((a) => a.pause());
           scope.current.revert();
         }
       };
@@ -118,7 +135,10 @@ function App() {
   return (
     <>
       <NavBar />
-      <div ref={root} className="flex justify-center min-h-screen mx-10">
+      <div
+        ref={root}
+        className="flex scroll-container justify-center min-h-screen mx-10"
+      >
         <div className="flex items-center justify-center">
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
@@ -164,10 +184,16 @@ function App() {
       <div className="flex justify-center items-center min-h-screen">
         <div>
           <div className="my-6">
-            <h3 className="card text-3xl text-center font-bold">
+            <h3
+              className="fade-up text-3xl text-center font-bold"
+              style={{ opacity: "0%", translate: "0 100px" }}
+            >
               My Project
             </h3>
-            <p className="card text-xl text-center font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <p
+              className="fade-up text-xl text-center font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent"
+              style={{ opacity: "0%", translate: "0 50px" }}
+            >
               Several projects that I have created
             </p>
           </div>
