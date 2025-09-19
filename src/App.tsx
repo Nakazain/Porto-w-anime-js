@@ -105,7 +105,7 @@ function App() {
         animate(e, {
           opacity: 1,
           translate: "0 0px",
-          ease: 'inOutCubic',
+          ease: "inOutCubic",
           autoplay: onScroll({
             container: ".scroll-container",
             enter: "bottom-=7% top",
@@ -135,11 +135,8 @@ function App() {
   return (
     <>
       <NavBar />
-      <div
-        ref={root}
-        className="flex scroll-container justify-center min-h-screen mx-10"
-      >
-        <div className="flex items-center justify-center">
+      <div ref={root} className="flex scroll-container justify-center mx-10">
+        <div className="flex items-center min-h-screen justify-center">
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
               <h1 id="name" className="text-6xl font-bold text-white">
