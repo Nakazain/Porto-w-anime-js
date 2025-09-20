@@ -115,17 +115,19 @@ function App() {
           }),
         })
       );
-      
-      const card = document.querySelectorAll('.card');
-      const cardScroll = Array.from(card).map((e)=>
+
+      const card = document.querySelectorAll(".card");
+      const cardScroll = Array.from(card).map((e) =>
         animate(e, {
           opacity: 1,
           translate: "0px",
-          duration:500,
+          duration: 500,
+          ease: "inOutCubic",
           autoplay: onScroll({
             container: ".scroll-container",
             enter: "bottom-=7% 0",
-            leave: "top+=75% 205%",
+            leave: "top+=75% 30%",
+            sync: 0.9,
             debug: true,
           }),
         })
@@ -140,6 +142,7 @@ function App() {
         }
       };
     });
+
     setTimeout(() => {
       document.querySelector(".fade")?.classList.add("opacity-100");
     }, 2000);
@@ -222,7 +225,12 @@ function App() {
             <Loader />
           </div>
           <div className="form-cont flex flex-col gap-4">
-            <h4 className="text-3xl font-bold text-center mb-4">Contact me</h4>
+            <h4
+              className="fade-up text-3xl font-bold text-center mb-4"
+              style={{ opacity: "0%", translate: "0 100px" }}
+            >
+              Contact me
+            </h4>
             <Input text="Name" type="text" value={nama} onChange={setNama} />
             <Input
               text="Email"
@@ -238,6 +246,8 @@ function App() {
               onChange={setMessage}
             />
             <Btn
+              style={{ opacity: "0%", translate: "0 100px" }}
+              className="fade-up"
               onClick={(e) => {
                 e.preventDefault();
                 const button = e.currentTarget;

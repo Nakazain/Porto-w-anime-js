@@ -1,7 +1,7 @@
 export default function Card() {
   return (
     <div
-      className="card relative cursor-pointer bg-neutral-800 border border-neutral-700 w-96 p-4 group transition-all z-10 rounded-2xl hover:-translate-y-2 hover:scale-[1.02] overflow-hidden"
+      className="card relative cursor-pointer bg-neutral-800 border border-neutral-700 w-96 p-4 z-10 duration-100 rounded-2xl hover:scale-[1.02] overflow-hidden"
       style={{ opacity: "0%", translate: "100px" }}
     >
       <div>
