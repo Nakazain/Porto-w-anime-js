@@ -166,9 +166,6 @@ function App() {
         }
       };
     });
-    // setTimeout(() => {
-    //   document.querySelector(".shape-container")?.classList.add("opacity-100");
-    // }, 3000);
   }, []);
 
   return (
