@@ -111,7 +111,6 @@ function App() {
             enter: "bottom-=7% top",
             leave: "top+=80% bottom",
             sync: 0.5,
-            debug: true,
           }),
         })
       );
@@ -128,7 +127,6 @@ function App() {
             enter: "bottom top",
             leave: "top+=80% 30%",
             sync: 0.9,
-            debug: true,
           }),
         })
       );
@@ -144,7 +142,6 @@ function App() {
             enter: "bottom-=5% top",
             leave: "top+=90% 10%",
             sync: 0.5,
-            debug: true,
           }),
         })
       );
