@@ -109,13 +109,13 @@ function App() {
           autoplay: onScroll({
             container: ".scroll-container",
             enter: "bottom-=7% top",
-            leave: "top+=75% bottom",
+            leave: "top+=80% bottom",
             sync: 0.5,
             debug: true,
           }),
         })
       );
-
+      
       const card = document.querySelectorAll(".card");
       const cardScroll = Array.from(card).map((e) =>
         animate(e, {
@@ -125,9 +125,25 @@ function App() {
           ease: "inOutCubic",
           autoplay: onScroll({
             container: ".scroll-container",
-            enter: "bottom-=5% 0",
-            leave: "top+=75% 30%",
+            enter: "bottom top",
+            leave: "top+=80% 30%",
             sync: 0.9,
+            debug: true,
+          }),
+        })
+      );
+      
+      const fadeUpForm = document.querySelectorAll(".fade-up-form");
+      const fadeUpScrollForm = Array.from(fadeUpForm).map((e) =>
+        animate(e, {
+          opacity: 1,
+          translate: "0 0px",
+          ease: "inOutCubic",
+          autoplay: onScroll({
+            container: ".form-cont",
+            enter: "bottom-=5% top",
+            leave: "top+=90% 10%",
+            sync: 0.5,
             debug: true,
           }),
         })
@@ -147,6 +163,7 @@ function App() {
         if (scope.current) {
           animations.forEach((a) => a.pause());
           cardScroll.forEach((a) => a.pause());
+          fadeUpScrollForm.forEach((a) => a.pause());
           fadeUpScroll.forEach((a) => a.pause());
           scope.current.revert();
         }
@@ -232,7 +249,7 @@ function App() {
           </div>
           <div className="form-cont flex flex-col gap-4">
             <h4
-              className="fade-up text-3xl font-bold text-center mb-4"
+              className="fade-up-form text-3xl font-bold text-center mb-4"
               style={{ opacity: "0%", translate: "0 100px" }}
             >
               Contact me
@@ -253,7 +270,7 @@ function App() {
             />
             <Btn
               style={{ opacity: "0%", translate: "0 100px" }}
-              className="fade-up"
+              className="fade-up-form"
               onClick={(e) => {
                 e.preventDefault();
                 const button = e.currentTarget;

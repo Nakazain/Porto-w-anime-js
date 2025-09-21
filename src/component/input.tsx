@@ -14,7 +14,7 @@ export default function Input({
 }: InputProps) {
   return (
     <div
-      className="fade-up w-full relative flex rounded-xl"
+      className="fade-up-form w-full relative flex rounded-xl"
       style={{ opacity: "0%", translate: "0 100px" }}
     >
       {textarea ? (
