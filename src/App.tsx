@@ -38,7 +38,7 @@ function App() {
     waitUntil: 1000,
   });
 
-  // Form funtioon
+  // Form funtion
   async function submit(
     nama: string,
     email: string,
@@ -125,13 +125,23 @@ function App() {
           ease: "inOutCubic",
           autoplay: onScroll({
             container: ".scroll-container",
-            enter: "bottom-=7% 0",
+            enter: "bottom-=5% 0",
             leave: "top+=75% 30%",
             sync: 0.9,
             debug: true,
           }),
         })
       );
+
+      animate(".fade", {
+        opacity:1,
+        delay: 2000,
+      })
+      
+      animate(".shape-container", {
+        opacity:1,
+        delay: 3000,
+      })
 
       return () => {
         if (scope.current) {
@@ -142,13 +152,9 @@ function App() {
         }
       };
     });
-
-    setTimeout(() => {
-      document.querySelector(".fade")?.classList.add("opacity-100");
-    }, 2000);
-    setTimeout(() => {
-      document.querySelector(".shape-container")?.classList.add("opacity-100");
-    }, 3000);
+    // setTimeout(() => {
+    //   document.querySelector(".shape-container")?.classList.add("opacity-100");
+    // }, 3000);
   }, []);
 
   return (
@@ -173,7 +179,7 @@ function App() {
               optimal work. I'm always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
-            <div className="fade flex gap-2 mt-4 transition-opacity duration-500 opacity-0">
+            <div className="fade flex gap-2 mt-4" style={{opacity: '0%'}}>
               <Btn>
                 <p>My Project</p>
               </Btn>
@@ -187,7 +193,7 @@ function App() {
               </Btn>
             </div>
           </div>
-          <div className="shape-container relative h-full transition-opacity duration-1000 flex-1 overflow-visible opacity-0">
+          <div className="shape-container relative h-full flex-1" style={{opacity: '0%'}}>
             <Shape type="circle" />
             <Shape type="circleOutline" />
             <Shape type="square" />
