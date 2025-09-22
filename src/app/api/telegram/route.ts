@@ -1,11 +1,11 @@
-import { VercelRequest, VercelResponse } from "@vercel/node";
+import { NextResponse } from "next/server";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method Not Allowed" });
-  }
+export async function GET() {
+  return NextResponse.json({ error: "Method Not Allowed" });
+}
 
-  const { name, email, message } = req.body as {
+export async function POST(req: Request) {
+  const { name, email, message } = await req.json() as {
     name: string;
     email: string;
     message: string;
@@ -37,8 +37,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     const result = await telegramRes.json();
-    return res.status(200).json(result);
+    return NextResponse.json(result);
   } catch (err: any) {
-    return res.status(500).json({ error: err.message });
+    return NextResponse.json({ error: err.message });
   }
 }

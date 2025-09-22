@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 import { animate, createScope, onScroll, utils } from "animejs";
@@ -20,11 +20,6 @@ export default function App() {
   const [nama, setNama] = useState("");
   const { showToast } = useToast();
   const [message, setMessage] = useState("");
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
-  console.log(viewportHeight)
-  console.log(viewportWidth)
 
   // Animating
   useTextAnimation({
@@ -88,6 +83,11 @@ export default function App() {
 
   // Animating
   useEffect(() => {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    console.log(viewportHeight);
+    console.log(viewportWidth);
+
     scope.current = createScope({ root }).add(() => {
       const Shape = document.querySelectorAll(".shape");
       const animations = Array.from(Shape).map((e) =>
@@ -119,7 +119,7 @@ export default function App() {
           }),
         })
       );
-      
+
       const card = document.querySelectorAll(".card");
       const cardScroll = Array.from(card).map((e) =>
         animate(e, {
@@ -135,7 +135,7 @@ export default function App() {
           }),
         })
       );
-      
+
       const fadeUpForm = document.querySelectorAll(".fade-up-form");
       const fadeUpScrollForm = Array.from(fadeUpForm).map((e) =>
         animate(e, {
@@ -152,14 +152,14 @@ export default function App() {
       );
 
       animate(".fade", {
-        opacity:1,
+        opacity: 1,
         delay: 2000,
-      })
-      
+      });
+
       animate(".shape-container", {
-        opacity:1,
+        opacity: 1,
         delay: 3000,
-      })
+      });
 
       return () => {
         if (scope.current) {
@@ -195,7 +195,7 @@ export default function App() {
               optimal work. I'm always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
-            <div className="fade flex gap-2 mt-4" style={{opacity: '0%'}}>
+            <div className="fade flex gap-2 mt-4" style={{ opacity: "0%" }}>
               <Btn>
                 <p>My Project</p>
               </Btn>
@@ -209,7 +209,10 @@ export default function App() {
               </Btn>
             </div>
           </div>
-          <div className="shape-container relative h-full flex-1" style={{opacity: '0%'}}>
+          <div
+            className="shape-container relative h-full flex-1"
+            style={{ opacity: "0%" }}
+          >
             <Shape type="circle" />
             <Shape type="circleOutline" />
             <Shape type="square" />
