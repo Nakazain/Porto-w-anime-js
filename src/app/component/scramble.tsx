@@ -21,12 +21,11 @@ export default function Scramble() {
   const started = useRef(false);
 
   // helper promisify animate
-  function animatePromise(targets: any, params: any) {
+  function animatePromise(targets: object, params: object) {
     return new Promise<void>((resolve) => {
       animate(targets, {
         ...params,
         onComplete() {
-          if (typeof params.complete === "function") params.complete();
           resolve();
         },
       });
