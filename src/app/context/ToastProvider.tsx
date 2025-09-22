@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, type ReactNode } from 'react';
+import React, { createContext, useState, type ReactNode } from 'react';
 import Toaster from '../component/Toaster';
 
 interface Toast {
@@ -13,7 +13,7 @@ interface ToastContextType {
   showToast: (message: string, type: 'success' | 'error') => void;
 }
 
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
+export const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
@@ -46,12 +46,4 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       </div>
     </ToastContext.Provider>
   );
-};
-
-export const useToast = () => {
-  const context = useContext(ToastContext);
-  if (!context) {
-    throw new Error('useToast must be used within a ToastProvider');
-  }
-  return context;
 };

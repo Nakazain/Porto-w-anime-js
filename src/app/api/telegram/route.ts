@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
     const result = await telegramRes.json();
     return NextResponse.json(result);
-  } catch (err: unknown ) {
+  } catch (err: unknown) {
     return NextResponse.json({ error: err.message });
   }
 }
