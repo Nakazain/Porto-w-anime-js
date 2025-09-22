@@ -24,7 +24,7 @@ export function useTextAnimation({
   onComplete,
 }: AnimationOptions) {
   useLayoutEffect(() => {
-    let elements: Element[] = [];
+    const elements: Element[] = [];
 
     // Remove opacity
     if (selectors.startsWith("#")) {
