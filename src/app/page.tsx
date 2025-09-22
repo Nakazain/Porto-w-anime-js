@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState, useRef } from "react";
 import { animate, createScope, onScroll, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
@@ -11,7 +13,7 @@ import Loader from "./component/loader";
 import { useToast } from "./context/ToastProvider";
 import Scramble from "./component/scramble";
 
-function App() {
+export default function App() {
   const scope = useRef<ReturnType<typeof createScope> | null>(null);
   const root = useRef(null);
   const [email, setEmail] = useState("");
@@ -20,6 +22,9 @@ function App() {
   const [message, setMessage] = useState("");
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+
+  console.log(viewportHeight)
+  console.log(viewportWidth)
 
   // Animating
   useTextAnimation({
@@ -280,5 +285,3 @@ function App() {
     </>
   );
 }
-
-export default App;
