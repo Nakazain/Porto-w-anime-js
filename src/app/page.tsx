@@ -181,18 +181,18 @@ export default function App() {
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
               <h1 id="name" className="text-6xl font-bold text-white">
-                Hi 👋 I'm Zen
+                Hi 👋 I&apos;m Zen
               </h1>
               <h2 className="mt-4 flex gap-2 text-4xl font-bold text-gray-200">
-                <span>I'm a</span>
+                <span>I&apos;m a</span>
                 <Scramble />
               </h2>
             </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
-              I'm passionate about digital and technology, from graphic design
+              I&apos;m passionate about digital and technology, from graphic design
               and video editing to building websites from scratch. I absolutely
               love learning new things and experimenting to produce engaging and
-              optimal work. I'm always looking for ways to improve the quality
+              optimal work. I&apos;m always looking for ways to improve the quality
               and efficiency of my work.
             </h2>
             <div className="fade flex gap-2 mt-4" style={{ opacity: "0%" }}>
