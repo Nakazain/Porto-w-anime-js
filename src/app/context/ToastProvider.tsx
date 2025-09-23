@@ -1,19 +1,14 @@
 'use client'
 
-import React, { createContext, useState, type ReactNode } from 'react';
+import React, { useState, type ReactNode } from 'react';
 import Toaster from '../component/Toaster';
+import { ToastContext } from "../hooks/useToast";
 
 interface Toast {
   id: number;
   message: string;
   type: 'success' | 'error';
 }
-
-interface ToastContextType {
-  showToast: (message: string, type: 'success' | 'error') => void;
-}
-
-export const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);

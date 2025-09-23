@@ -10,7 +10,7 @@ import Card from "./component/card";
 import Input from "./component/input";
 import Footer from "./component/footer";
 import Loader from "./component/loader";
-import { useToast } from "./context/ToastProvider";
+import { useToast } from "./hooks/useToast";
 import Scramble from "./component/scramble";
 
 export default function App() {
