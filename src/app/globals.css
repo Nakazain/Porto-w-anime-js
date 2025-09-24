@@ -13,6 +13,15 @@
 }
 }
 
+.scroll-container {
+  overflow: auto;
+  -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
 .styled-wrapper {
   display: flex;
   justify-content: center;
