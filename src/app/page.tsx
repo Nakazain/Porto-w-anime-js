@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { animate, createScope, onScroll, utils } from "animejs";
 import { useTextAnimation } from "./hooks/useTextAnimation";
 import Shape from "./component/shape";
-import NavBar from "./component/navbar";
 import Btn from "./component/button";
 import Card from "./component/card";
 import Input from "./component/input";
@@ -67,13 +66,13 @@ export default function App() {
 
       const result = await response.json();
       if (result.ok) {
-        showToast("Pesan berhasil terkirim!", "success");
+        showToast("Message sent successfully!", "success");
       } else {
-        showToast("Gagal mengirim pesan", "error");
+        showToast("Failed to send message, please try again", "error");
       }
     } catch (error) {
       console.error("Error:", error);
-      showToast("Terjadi kesalahan saat mengirim pesan.", "error");
+      showToast(`An error occurred while sending the message. Please try again. Error: ${error}.`, "error");
     } finally {
       formCont?.classList.remove("hidden");
       loader?.classList.add("hidden");
@@ -150,7 +149,7 @@ export default function App() {
           }),
         })
       );
-
+      
       animate(".fade", {
         opacity: 1,
         delay: 2000,
@@ -175,7 +174,11 @@ export default function App() {
 
   return (
     <>
-      <NavBar />
+      <div className="fixed top-0 z-50">
+        <div className="flex mt-6 mx-10">
+          <p className="text-2xl font-bold">Nakazain.</p>
+        </div>
+      </div>
       <div ref={root} className="flex scroll-container justify-center mx-10">
         <div className="flex items-center min-h-screen justify-center">
           <div className="ml-6 flex-1">
@@ -189,11 +192,11 @@ export default function App() {
               </h2>
             </div>
             <h2 id="ket" className="mt-4 text-xl text-gray-400 opacity-0">
-              I&apos;m passionate about digital and technology, from graphic design
-              and video editing to building websites from scratch. I absolutely
-              love learning new things and experimenting to produce engaging and
-              optimal work. I&apos;m always looking for ways to improve the quality
-              and efficiency of my work.
+              I&apos;m passionate about digital and technology, from graphic
+              design and video editing to building websites from scratch. I
+              absolutely love learning new things and experimenting to produce
+              engaging and optimal work. I&apos;m always looking for ways to
+              improve the quality and efficiency of my work.
             </h2>
             <div className="fade flex gap-2 mt-4" style={{ opacity: "0%" }}>
               <Btn>
@@ -254,7 +257,7 @@ export default function App() {
               className="fade-up-form text-3xl font-bold text-center mb-4"
               style={{ opacity: "0%", translate: "0 100px" }}
             >
-              Contact me
+              Send Me A Message
             </h4>
             <Input text="Name" type="text" value={nama} onChange={setNama} />
             <Input
