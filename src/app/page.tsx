@@ -164,9 +164,9 @@ export default function App() {
         translate: "0",
         autoplay: onScroll({
           container: ".scroll-container",
-          enter: `bottom-=90% bottom+=${(viewportHeight / 100) * 80}px `,
-          leave: `top+=5% bottom+=${viewportHeight + 20}px`,
-          sync: 0.5,
+          enter: `bottom-=90% bottom+=${(viewportHeight / 100) * 85}px `,
+          leave: `top+=5% bottom+=${viewportHeight - 20}px`,
+          sync: 0.75,
         })
       })
 
