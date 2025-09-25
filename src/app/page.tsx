@@ -159,6 +159,16 @@ export default function App() {
         opacity: 1,
         delay: 3000,
       });
+      
+      animate(".nav", {
+        translate: "0",
+        autoplay: onScroll({
+          container: ".scroll-container",
+          enter: `bottom-=90% bottom+=${(viewportHeight / 100) * 80}px `,
+          leave: `top+=5% bottom+=${viewportHeight + 20}px`,
+          sync: 0.5,
+        })
+      })
 
       return () => {
         if (scope.current) {
@@ -174,13 +184,13 @@ export default function App() {
 
   return (
     <>
+      <div ref={root} className="flex scroll-container ">
       <div className="fixed top-0 z-50">
-        <div className="flex mt-6 mx-10">
+        <div style={{translate: "-150%"}} className="nav flex mt-6 mx-10">
           <p className="text-2xl font-bold">Nakazain.</p>
         </div>
       </div>
-      <div ref={root} className="flex scroll-container justify-center mx-10">
-        <div className="flex items-center min-h-screen justify-center">
+        <div className="flex items-center min-h-screen justify-center mx-10">
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
               <h1 id="name" className="text-6xl font-bold text-white">
@@ -225,7 +235,7 @@ export default function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex prjk-contaier justify-center items-center min-h-screen">
         <div>
           <div className="my-6">
             <h3
