@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Card() {
   return (
     <div
@@ -5,7 +7,7 @@ export default function Card() {
       style={{ opacity: "0%", translate: "100px" }}
     >
       <div>
-        <img className="h-48 object-cover rounded-xl" src="/tes.jpg" alt="" />
+        <Image className="h-48 object-cover rounded-xl" src="/tes.jpg" alt="Placeholder" />
       </div>
       <div className="mt-4">
         <p className="text-xl font-bold mb-2 text-center">Project</p>
