@@ -7,7 +7,7 @@ export default function Card() {
       style={{ opacity: "0%", translate: "100px" }}
     >
       <div>
-        <Image className="h-48 object-cover rounded-xl" src="/tes.jpg" alt="Placeholder" />
+        <Image className="h-48 w-full object-cover rounded-xl" src="/tes.jpg" width={1280} height={720} alt="Placeholder" />
       </div>
       <div className="mt-4">
         <p className="text-xl font-bold mb-2 text-center">Project</p>
