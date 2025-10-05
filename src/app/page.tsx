@@ -259,6 +259,7 @@ export default function App() {
               title="Waifu Src"
               description="Bored with your same old waifu, just find a new wife with Waifu Src"
               imageUrl="/waifusrc.png"
+              placeholder="Waifu finding app image"
               weblink="waifu-src.vercel.app"
               github="https://github.com/Nakazain/WaifuSrc"
             />

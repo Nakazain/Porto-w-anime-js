@@ -4,6 +4,7 @@ type CardProps = {
   description: string;
   imageUrl: string;
   github: string;
+  placeholder: string;
   className?: string;
   weblink?: string;
 };
@@ -12,6 +13,7 @@ export default function Card({
   description,
   imageUrl,
   github,
+  placeholder,
   className,
   weblink,
 }: CardProps) {
@@ -26,7 +28,7 @@ export default function Card({
           src={imageUrl}
           width={1280}
           height={720}
-          alt="Placeholder"
+          alt={placeholder}
         />
       </div>
       <div className="my-4">
