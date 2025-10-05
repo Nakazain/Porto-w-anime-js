@@ -72,7 +72,10 @@ export default function App() {
       }
     } catch (error) {
       console.error("Error:", error);
-      showToast(`An error occurred while sending the message. Please try again. Error: ${error}.`, "error");
+      showToast(
+        `An error occurred while sending the message. Please try again. Error: ${error}.`,
+        "error"
+      );
     } finally {
       formCont?.classList.remove("hidden");
       loader?.classList.add("hidden");
@@ -123,7 +126,7 @@ export default function App() {
       const cardScroll = Array.from(card).map((e) =>
         animate(e, {
           opacity: 1,
-          translate: "0px",
+          translate: "0 0px",
           duration: 500,
           ease: "inOutCubic",
           autoplay: onScroll({
@@ -149,7 +152,7 @@ export default function App() {
           }),
         })
       );
-      
+
       animate(".fade", {
         opacity: 1,
         delay: 2000,
@@ -159,7 +162,7 @@ export default function App() {
         opacity: 1,
         delay: 3000,
       });
-      
+
       animate(".nav", {
         translate: "0",
         autoplay: onScroll({
@@ -167,8 +170,8 @@ export default function App() {
           enter: `bottom-=90% bottom+=${(viewportHeight / 100) * 85}px `,
           leave: `top+=5% bottom+=${viewportHeight - 20}px`,
           sync: 0.75,
-        })
-      })
+        }),
+      });
 
       return () => {
         if (scope.current) {
@@ -185,11 +188,11 @@ export default function App() {
   return (
     <>
       <div ref={root} className="flex scroll-container ">
-      <div className="fixed top-0 z-50">
-        <div style={{translate: "-150%"}} className="nav flex mt-6 mx-10">
-          <p className="text-2xl font-bold">Nakazain.</p>
+        <div className="fixed top-0 z-50">
+          <div style={{ translate: "-150%" }} className="nav flex mt-6 mx-10">
+            <p className="text-2xl font-bold">Nakazain.</p>
+          </div>
         </div>
-      </div>
         <div className="flex items-center min-h-screen justify-center mx-10">
           <div className="ml-6 flex-1">
             <div className="ans opacity-0">
@@ -252,8 +255,13 @@ export default function App() {
             </p>
           </div>
           <div className="flex justify-center gap-4">
-            <Card />
-            <Card />
+            <Card
+              title="Waifu Src"
+              description="Bored with your same old waifu, just find a new wife with Waifu Src"
+              imageUrl="/waifuscr.png"
+              weblink="waifu-src.vercel.app"
+              github="https://github.com/Nakazain/WaifuSrc"
+            />
           </div>
         </div>
       </div>
