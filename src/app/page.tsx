@@ -11,6 +11,7 @@ import Footer from "./component/footer";
 import Loader from "./component/loader";
 import { useToast } from "./hooks/useToast";
 import Scramble from "./component/scramble";
+import ContactCard from "./component/contact"
 
 export default function App() {
   const scope = useRef<ReturnType<typeof createScope> | null>(null);
@@ -266,45 +267,55 @@ export default function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center min-w-6xl items-center min-h-screen">
-        <form>
-          <div className="loader hidden">
-            <Loader />
+      <div className="flex justify-center min-w-6xl gap-8 items-center min-h-screen">
+        <div className="flex justify-center gap-4">
+          <ContactCard />
+          <div>
+            <form>
+              <div className="loader hidden">
+                <Loader />
+              </div>
+              <div className="form-cont flex flex-col gap-4">
+                <h4
+                  className="fade-up-form text-3xl font-bold text-center mb-4"
+                  style={{ opacity: "0%", translate: "0 100px" }}
+                >
+                  Send Me A Message
+                </h4>
+                <Input
+                  text="Name"
+                  type="text"
+                  value={nama}
+                  onChange={setNama}
+                />
+                <Input
+                  text="Email"
+                  type="email"
+                  value={email}
+                  onChange={setEmail}
+                />
+                <Input
+                  textarea
+                  text="Message"
+                  type="text"
+                  value={message}
+                  onChange={setMessage}
+                />
+                <Btn
+                  style={{ opacity: "0%", translate: "0 100px" }}
+                  className="fade-up-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const button = e.currentTarget;
+                    submit(nama, email, message, button);
+                  }}
+                >
+                  Submit
+                </Btn>
+              </div>
+            </form>
           </div>
-          <div className="form-cont flex flex-col gap-4">
-            <h4
-              className="fade-up-form text-3xl font-bold text-center mb-4"
-              style={{ opacity: "0%", translate: "0 100px" }}
-            >
-              Send Me A Message
-            </h4>
-            <Input text="Name" type="text" value={nama} onChange={setNama} />
-            <Input
-              text="Email"
-              type="email"
-              value={email}
-              onChange={setEmail}
-            />
-            <Input
-              textarea
-              text="Message"
-              type="text"
-              value={message}
-              onChange={setMessage}
-            />
-            <Btn
-              style={{ opacity: "0%", translate: "0 100px" }}
-              className="fade-up-form"
-              onClick={(e) => {
-                e.preventDefault();
-                const button = e.currentTarget;
-                submit(nama, email, message, button);
-              }}
-            >
-              Submit
-            </Btn>
-          </div>
-        </form>
+        </div>
       </div>
       <Footer />
     </>
