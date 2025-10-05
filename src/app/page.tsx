@@ -258,7 +258,7 @@ export default function App() {
             <Card
               title="Waifu Src"
               description="Bored with your same old waifu, just find a new wife with Waifu Src"
-              imageUrl="/waifuscr.png"
+              imageUrl="/waifusrc.png"
               weblink="waifu-src.vercel.app"
               github="https://github.com/Nakazain/WaifuSrc"
             />
