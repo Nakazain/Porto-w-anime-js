@@ -11,7 +11,7 @@ import Footer from "./component/footer";
 import Loader from "./component/loader";
 import { useToast } from "./hooks/useToast";
 import Scramble from "./component/scramble";
-import ContactCard from "./component/contact"
+import ContactCard from "./component/contact";
 
 export default function App() {
   const scope = useRef<ReturnType<typeof createScope> | null>(null);
@@ -271,7 +271,16 @@ export default function App() {
         <div className="flex justify-center gap-8">
           <ContactCard />
           <div className="flex justify-center items-center">
-            <form>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const nativeEvent = e.nativeEvent as SubmitEvent & {
+                  submitter: HTMLButtonElement;
+                };
+                const button = nativeEvent.submitter as HTMLButtonElement;
+                submit(nama, email, message, button);
+              }}
+            >
               <div className="loader hidden">
                 <Loader />
               </div>
@@ -302,13 +311,9 @@ export default function App() {
                   onChange={setMessage}
                 />
                 <Btn
+                  type="submit"
                   style={{ opacity: "0%", translate: "0 100px" }}
                   className="fade-up-form"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const button = e.currentTarget;
-                    submit(nama, email, message, button);
-                  }}
                 >
                   Submit
                 </Btn>
