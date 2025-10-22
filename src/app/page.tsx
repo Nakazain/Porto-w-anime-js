@@ -267,7 +267,7 @@ export default function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center min-w-6xl gap-8 items-center min-h-screen">
+      <div className="flex form-cont justify-center min-w-6xl gap-8 items-center min-h-screen">
         <div className="flex justify-center gap-8">
           <ContactCard />
           <div className="flex justify-center items-center">
@@ -284,7 +284,7 @@ export default function App() {
               <div className="loader hidden">
                 <Loader />
               </div>
-              <div className="form-cont flex justify-center items-center flex-col gap-4">
+              <div className="flex justify-center items-center flex-col gap-4">
                 <h4
                   className="fade-up-form text-3xl font-bold text-center mb-4"
                   style={{ opacity: "0%", translate: "0 100px" }}
