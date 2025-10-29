@@ -24,7 +24,7 @@ export default function ContactCard() {
               </a>
             </div>
 
-            <div className="h-px bg-neutral-700 my-2" />
+            <div className="h-px my-2" />
             <div>
               <div className="space-y-3">
                 <a

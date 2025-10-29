@@ -216,14 +216,6 @@ export default function App() {
               <Btn>
                 <p>My Project</p>
               </Btn>
-              <Btn
-                onClick={() => showToast("Pesan berhasil terkirim!", "success")}
-              >
-                Toaster tes
-              </Btn>
-              <Btn onClick={() => showToast("Hahhhhhhhhhhhhhhhh!", "error")}>
-                Toaster tes
-              </Btn>
             </div>
           </div>
           <div

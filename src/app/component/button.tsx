@@ -14,9 +14,9 @@ export default function Button({
   style,
 }: ButtonProps) {
   return (
-    <div style={style} className={`w-full ${className}`}>
+    <div style={style} className={`w-1/2 ${className}`}>
       <button
-        className={`w-full px-6 py-3 bg-transparent border-2 border-primary text-white rounded-lg hover:bg-primary transition-all duration-200 hover:cursor-pointer`}
+        className="w-full px-6 py-3 bg-transparent border-2 border-primary text-white rounded-lg hover:bg-primary transition-all duration-200 hover:cursor-pointer"
         onClick={onClick}
         type={type}
       >
