@@ -29,7 +29,7 @@ export default function ContactCard() {
               <div className="space-y-3">
                 <a
                   href="https://github.com/Nakazain"
-                  className="flex items-center gap-3 p-3 rounded-lg bg-neutral-900/50 hover:bg-neutral-900 border border-primary hover:border-secondary/50 transition-all duration-200 group"
+                  className="flex items-center gap-3 p-3 rounded-lg  hover:bg-neutral-900 border border-primary hover:border-secondary/50 transition-all duration-200 group"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

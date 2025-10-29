@@ -19,12 +19,12 @@ export default function Card({
 }: CardProps) {
   return (
     <div
-      className={`card relative bg-neutral-800 border border-neutral-700 w-96 p-4 z-10 duration-100 rounded-2xl hover:scale-[1.02] overflow-hidden ${className}`}
+      className={`card relative bg-neutral-900/50 border-2 border-primary/50 w-96 p-4 z-10 duration-100 rounded-2xl hover:scale-[1.02] overflow-hidden ${className}`}
       style={{ opacity: "0%", translate: "0 100px" }}
     >
       <div>
         <Image
-          className="h-48 w-full object-cover rounded-xl"
+          className="h-48 w-full object-cover rounded-xl border"
           src={imageUrl}
           width={1280}
           height={720}
