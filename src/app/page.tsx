@@ -115,7 +115,6 @@ export default function App() {
           translate: "0 0px",
           ease: "inOutCubic",
           autoplay: onScroll({
-            container: ".scroll-container",
             enter: "bottom-=7% top",
             leave: "top+=80% bottom",
             sync: 0.5,
@@ -131,7 +130,6 @@ export default function App() {
           duration: 500,
           ease: "inOutCubic",
           autoplay: onScroll({
-            container: ".scroll-container",
             enter: "bottom top",
             leave: "top+=80% 30%",
             sync: 0.9,
@@ -146,13 +144,27 @@ export default function App() {
           translate: "0 0px",
           ease: "inOutCubic",
           autoplay: onScroll({
-            container: ".form-cont",
             enter: "bottom-=5% top",
             leave: "top+=90% 10%",
+            debug: true,
             sync: 0.5,
           }),
         })
       );
+
+      setTimeout(() => {
+        animate(".contact", {
+          opacity: 1,
+          translate: "0 0px",
+          ease: "inOutCubic",
+          autoplay: onScroll({
+            enter: "bottom-=5% top",
+            leave: "top+=90% 10%",
+            debug: true,
+            sync: 0.5,
+          }),
+        })
+      }, 100);
 
       animate(".fade", {
         opacity: 1,
@@ -167,7 +179,6 @@ export default function App() {
       animate(".nav", {
         translate: "0",
         autoplay: onScroll({
-          container: ".scroll-container",
           enter: `bottom-=90% bottom+=${(viewportHeight / 100) * 85}px `,
           leave: `top+=5% bottom+=${viewportHeight - 20}px`,
           sync: 0.75,

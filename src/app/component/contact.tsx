@@ -1,6 +1,9 @@
 export default function ContactCard() {
   return (
-    <div className="w-full max-w-md">
+    <div
+      className="w-full max-w-md contact"
+      style={{ opacity: "0%", translate: "0 100px" }}
+    >
       <div className="relative border border-primary rounded-lg overflow-hidden">
         <div className="p-8">
           <div className="mb-8">
