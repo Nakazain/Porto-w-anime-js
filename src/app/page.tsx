@@ -146,7 +146,6 @@ export default function App() {
           autoplay: onScroll({
             enter: "bottom-=5% top",
             leave: "top+=90% 10%",
-            debug: true,
             sync: 0.5,
           }),
         })
@@ -160,7 +159,6 @@ export default function App() {
           autoplay: onScroll({
             enter: "bottom-=5% top",
             leave: "top+=90% 10%",
-            debug: true,
             sync: 0.5,
           }),
         })
